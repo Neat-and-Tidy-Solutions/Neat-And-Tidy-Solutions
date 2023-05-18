@@ -1,18 +1,19 @@
-package Neat.and.Tidy.Solutions.cleaning.service.app.service;
+package Neat.and.Tidy.Solutions.cleaning.service.app.service.impl;
 
 import Neat.and.Tidy.Solutions.cleaning.service.app.data.dto.request.*;
 import Neat.and.Tidy.Solutions.cleaning.service.app.data.dto.response.*;
-import Neat.and.Tidy.Solutions.cleaning.service.app.data.models.Cleaner;
+import Neat.and.Tidy.Solutions.cleaning.service.app.data.models.Customer;
+import Neat.and.Tidy.Solutions.cleaning.service.app.service.CustomerService;
 
-public class CleanerServiceImpl implements CleanerService {
+public class CustomerServiceImpl implements CustomerService {
     @Override
-    public void logout() {
-
+    public Customer register(RegisterCustomerRequest registerCustomerRequest) {
+        return null;
     }
 
     @Override
-    public Cleaner register(RegisterCleanerRequest registerCleanerRequest) {
-        return null;
+    public void logout() {
+
     }
 
     @Override
@@ -36,14 +37,15 @@ public class CleanerServiceImpl implements CleanerService {
     }
 
     @Override
-    public AcceptOrderResponse acceptOrder(AcceptOrderRequest acceptOrderRequest) {
+    public PlaceOrderResponse placeOrder(PlaceOrderRequest placeOrderRequest) {
         return null;
     }
 
     @Override
-    public CancelAcceptedOrderResponse cancelOrder() {
+    public CancelOrderResponse cancelOrderResponse() {
         return null;
     }
+
 
     @Override
     public GiveFeedbackResponse giveFeedback(GiveFeedbackRequest giveFeedbackRequest) {
@@ -51,7 +53,22 @@ public class CleanerServiceImpl implements CleanerService {
     }
 
     @Override
+    public MakePaymentResponse makePayment(MakePaymentRequest makePaymentRequest) {
+        return null;
+    }
+
+    @Override
     public ChangePasswordResponse changePasswordResponse(ChangePasswordRequest changePasswordRequest) {
+        return null;
+    }
+
+    @Override
+    public ComputeChecklistResponse computeCheckList(ComputeChecklistRequest computeChecklistRequest) {
+        return null;
+    }
+
+    @Override
+    public AddCardResponse addCardResponse(AddCardRequest addCardRequest) {
         return null;
     }
 }
