@@ -1,9 +1,10 @@
-package Neat.and.Tidy.Solutions.cleaning.service.app.service.impl;
+package Neat.and.Tidy.Solutions.cleaning.service.app.service;
 
-import Neat.and.Tidy.Solutions.cleaning.service.app.data.models.HistoryEntry;
+import Neat.and.Tidy.Solutions.cleaning.service.app.data.models.Cleaner;
 
 import java.util.List;
 
+
 public interface CleanerHistoryService {
-    List<HistoryEntry> getCleanerHistory(String cleanerId);
+    List<Cleaner> getCleanerHistory(Long cleanerId);
 }

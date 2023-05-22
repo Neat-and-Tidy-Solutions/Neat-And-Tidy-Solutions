@@ -1,2 +1,17 @@
-package Neat.and.Tidy.Solutions.cleaning.service.app.mapper;public class ParaMapper {
+package Neat.and.Tidy.Solutions.cleaning.service.app.mapper;
+
+import Neat.and.Tidy.Solutions.cleaning.service.app.data.dto.request.RegisterCleanerRequest;
+import Neat.and.Tidy.Solutions.cleaning.service.app.data.models.AppUser;
+import lombok.NoArgsConstructor;
+
+@NoArgsConstructor
+public class ParaMapper {
+
+    public static AppUser map(RegisterCleanerRequest request){
+        AppUser appUser = new AppUser();
+        appUser.setName(request.getName());
+        appUser.setPassword(request.getPassword());
+        appUser.setEmail(request.getEmail());
+        return appUser;
+    }
 }

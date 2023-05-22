@@ -9,9 +9,16 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @Data
 public class ViewHistoryRequest {
-    private Customer customer;
-    private Cleaner cleaner;
-    private Payment payment;
-    private Order order;
-    private Feedback feedback;
+    // Ernest
+
+    private Long id;
+    private String name;
+    private String address;
+    private String contactNumber;
+    private Gender gender;
+//    private Customer customer;
+//    private Cleaner cleaner;
+//    private Payment payment;
+//    private Order order;
+//    private Feedback feedback;
 }
