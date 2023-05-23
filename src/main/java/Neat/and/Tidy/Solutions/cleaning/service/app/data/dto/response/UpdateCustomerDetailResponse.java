@@ -1,18 +1,16 @@
-package Neat.and.Tidy.Solutions.cleaning.service.app.data.models;
+package Neat.and.Tidy.Solutions.cleaning.service.app.data.dto.response;
 
-import jakarta.persistence.*;
+import Neat.and.Tidy.Solutions.cleaning.service.app.data.models.Gender;
 import lombok.AllArgsConstructor;
-import lombok.Getter;
+import lombok.Builder;
+import lombok.Data;
 import lombok.NoArgsConstructor;
-import lombok.Setter;
-@Entity
+
 @AllArgsConstructor
 @NoArgsConstructor
-@Getter
-@Setter
-public class Customer {
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+@Builder
+@Data
+public class UpdateCustomerDetailResponse {
     private Long id;
     private String name;
     private String email;
