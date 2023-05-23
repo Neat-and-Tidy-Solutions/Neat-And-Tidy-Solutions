@@ -8,7 +8,7 @@ import java.util.List;
 
 public interface CleanerRepository extends JpaRepository<Cleaner, Long> {
 
-    List<Cleaner> findByCleanerId(Long cleanerId);
+//    List<Cleaner> find(Long cleanerId);
 
-    void delete(Long cleanerId);
+//    void delete(Long cleanerId);
 }

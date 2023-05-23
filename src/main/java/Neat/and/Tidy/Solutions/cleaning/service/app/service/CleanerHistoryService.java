@@ -6,5 +6,5 @@ import java.util.List;
 
 
 public interface CleanerHistoryService {
-    List<Cleaner> getCleanerHistory(Long cleanerId);
+    List<Cleaner> getCleanerHistory();
 }

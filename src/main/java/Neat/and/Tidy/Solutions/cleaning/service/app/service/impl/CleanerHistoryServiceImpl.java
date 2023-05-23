@@ -18,8 +18,9 @@ public class CleanerHistoryServiceImpl implements CleanerHistoryService {
     }
 
     @Override
-    public List<Cleaner> getCleanerHistory(Long cleanerId) {
+    public List<Cleaner> getCleanerHistory() {
         // Retrieve cleaner history from the database based on the cleanerId
-        return cleanerRepository.findByCleanerId(cleanerId);
+//        return cleanerRepository.findAllById(cleanerId);
+        return cleanerRepository.findAll();
     }
 }

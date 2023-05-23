@@ -76,13 +76,17 @@ public class AdminServiceImpl implements AdminService {
 
     @Override
     public void deleteCleaner(Long cleanerId) {
-        Optional<Cleaner> optionalCleaner = cleanerRepository.findById(cleanerId);
-        if (optionalCleaner.isPresent()) {
-            Cleaner cleaner = optionalCleaner.get();
-            cleanerRepository.delete(cleanerId);
-        } else {
-            throw new IllegalArgumentException("Cleaner not found with ID: " + cleanerId);
-        }
+//        Optional<Cleaner> optionalCleaner = cleanerRepository.findById(cleanerId);
+//        if (optionalCleaner.isPresent()) {
+//            Cleaner cleaner = optionalCleaner.get();
+//            cleanerRepository.delete(cleanerId);
+//        } else {
+//            throw new IllegalArgumentException("Cleaner not found with ID: " + cleanerId);
+//        }
+
+
+        var foundCleaner = cleanerRepository.findById(cleanerId).orElseThrow(()-> new IllegalArgumentException("clearner not found"));
+        cleanerRepository.delete(foundCleaner);
     }
 
 
