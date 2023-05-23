@@ -1,9 +1,12 @@
 package Neat.and.Tidy.Solutions.cleaning.service.app.controller;
 
+import Neat.and.Tidy.Solutions.cleaning.service.app.data.dto.AdminDTO;
+import Neat.and.Tidy.Solutions.cleaning.service.app.data.models.Admin;
 import Neat.and.Tidy.Solutions.cleaning.service.app.data.models.Booking;
 import Neat.and.Tidy.Solutions.cleaning.service.app.data.models.Feedback;
 import Neat.and.Tidy.Solutions.cleaning.service.app.service.AdminService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -15,6 +18,32 @@ public class AdminController {
 
     @Autowired
     private AdminService adminService;
+
+//    @PostMapping("/register")
+//    public ResponseEntity<String> registerAdmin(@RequestBody AdminDTO adminDTO) {
+//        Admin admin = convertToAdmin(adminDTO);
+//
+//        boolean isRegistered = Boolean.parseBoolean(adminService.registerAdmin(adminDTO));
+//
+//        if (isRegistered) {
+//            return ResponseEntity.ok("Admin registered successfully");
+//        } else {
+//            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Failed to register admin");
+//        }
+//    }
+//
+//    // Other methods and dependencies for the AdminController
+//
+//    private Admin convertToAdmin(AdminDTO adminDTO) {
+//        Admin admin = new Admin();
+//        admin.setUsername(adminDTO.getUsername());
+//        admin.setPassword(adminDTO.getPassword());
+//        // Set other properties as needed
+//
+//        return admin;
+//    }
+
+
 
     @PostMapping("/cleaner/approve/{cleanerId}")
     public ResponseEntity<String> approveCleaner(@PathVariable Long cleanerId) {

@@ -1,11 +1,14 @@
 package Neat.and.Tidy.Solutions.cleaning.service.app.service.impl;
 
+import Neat.and.Tidy.Solutions.cleaning.service.app.data.dto.AdminDTO;
 import Neat.and.Tidy.Solutions.cleaning.service.app.data.models.*;
+import Neat.and.Tidy.Solutions.cleaning.service.app.data.repositories.AdminRepository;
 import Neat.and.Tidy.Solutions.cleaning.service.app.data.repositories.CleanerRepository;
 import Neat.and.Tidy.Solutions.cleaning.service.app.data.repositories.CustomerRepository;
 import Neat.and.Tidy.Solutions.cleaning.service.app.data.repositories.FeedbackRepository;
 import Neat.and.Tidy.Solutions.cleaning.service.app.service.AdminService;
 import lombok.AllArgsConstructor;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -17,6 +20,9 @@ import java.util.Optional;
 public class AdminServiceImpl implements AdminService {
 
     @Autowired
+    private final AdminRepository adminRepository;
+
+    @Autowired
     private CleanerRepository cleanerRepository;
 
     @Autowired
@@ -24,6 +30,54 @@ public class AdminServiceImpl implements AdminService {
 
     @Autowired
     private FeedbackRepository feedbackRepository;
+
+    @Autowired
+
+
+//
+//    @Override
+//    public Admin registerAdmin(AdminDTO admin) {
+//        // Check if the admin username is already taken
+//        if (adminRepository.isUsernameTaken(admin.getUsername())) {
+//            return false;
+//        }
+//        return adminRepository.save(admin);
+//    }
+
+
+//    @Override
+//    public String registerAdmin(AdminDTO adminDTO) {
+//        boolean isExists = adminService.findByUserName(username)
+//        if (adminRepository.existsById() {
+//
+//        }
+//
+//        Admin admin = new Admin();
+//        admin.setUsername(adminDTO.getUserName());
+//        admin.setPassword(adminDTO.getPassword());
+//        return adminRepository.save(admin);
+//
+//    }
+
+
+//    @Override
+//    public boolean login(String username, String password) {
+//        // Retrieve the admin with the given username from the database
+//        Admin admin = adminRepository.findByUsername(username);
+//
+//        // Check if the admin exists and the provided password matches
+//        if (admin != null && admin.getPassword().equals(password)) {
+//            return true; // Login successful
+//        }
+//
+//        return false; // Login failed
+//    }
+
+//    @Override
+//    public boolean update(Admin admin) {
+//        return false;
+//    }
+
     @Override
     public void approveCleaner(Long cleanerId) {
         Optional<Cleaner> optionalCleaner = cleanerRepository.findById(cleanerId);
@@ -79,50 +133,4 @@ public class AdminServiceImpl implements AdminService {
         var foundCleaner = cleanerRepository.findById(cleanerId).orElseThrow(()-> new IllegalArgumentException("clearner not found"));
         cleanerRepository.delete(foundCleaner);
     }
-
-
-
-
-//    public void addBooking(Booking booking) {
-//        if (bookings == null) {
-//            bookings = new ArrayList<>();
-//        }
-//        bookings.add(booking);
-//        booking.setCleaner(this);
-//    }
-//
-//    public void removeBooking(Booking booking) {
-//        if (bookings != null) {
-//            bookings.remove(booking);
-//            booking.setCleaner(null);
-//        }
-//    }
-
-
-//    @Override
-//    public ApiResponse sendInviteRequests(Set<InviteAdminRequest> inviteAdminRequestList) {
-//        EmailNotificationRequest request = new EmailNotificationRequest();
-//        var recipients = inviteAdminRequestList.stream()
-//                .map(inviteAdminRequest -> createAdminProfile(inviteAdminRequest))
-//                .map(inviteAdminRequest -> new Recipient(inviteAdminRequest.getUserDetails().getName() ,
-//                        inviteAdminRequest.getUserDetails().getEmail()))
-//                .toList();
-//        request.getTo().addAll(recipients);
-//
-//
-//        String adminMail = AppUtilities.getAdminMailTemplate();
-//        request.setHtmlContent(String.format(adminMail, "admin", AppUtilities.generateVerificationLink(0L)));
-//        var response = mailService.sendHtmlMail(request);
-//        if (response!=null) return ApiResponse.builder().message("invite requests sent").build();
-//        throw new BusinessLogicException("invite requests sending failed");
-//    }
-//
-//
-//    private Admin createAdminProfile(InviteAdminRequest inviteAdminRequest) {
-//        Admin admin = new Admin();
-//        admin.setUserDetails(new AppUser());
-//        admin.getUserDetails().setName(inviteAdminRequest.getName());
-//        admin.getUserDetails().setEmail(inviteAdminRequest.getEmail());
-//        return admin;
-//    }
 }
