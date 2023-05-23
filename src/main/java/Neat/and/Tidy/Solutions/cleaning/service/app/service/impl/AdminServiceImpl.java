@@ -1,9 +1,9 @@
 package Neat.and.Tidy.Solutions.cleaning.service.app.service.impl;
 
 import Neat.and.Tidy.Solutions.cleaning.service.app.data.models.*;
-import Neat.and.Tidy.Solutions.cleaning.service.app.data.repository.CleanerRepository;
-import Neat.and.Tidy.Solutions.cleaning.service.app.data.repository.CustomerRepository;
-import Neat.and.Tidy.Solutions.cleaning.service.app.data.repository.FeedbackRepository;
+import Neat.and.Tidy.Solutions.cleaning.service.app.data.repositories.CleanerRepository;
+import Neat.and.Tidy.Solutions.cleaning.service.app.data.repositories.CustomerRepository;
+import Neat.and.Tidy.Solutions.cleaning.service.app.data.repositories.FeedbackRepository;
 import Neat.and.Tidy.Solutions.cleaning.service.app.service.AdminService;
 import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -76,15 +76,6 @@ public class AdminServiceImpl implements AdminService {
 
     @Override
     public void deleteCleaner(Long cleanerId) {
-//        Optional<Cleaner> optionalCleaner = cleanerRepository.findById(cleanerId);
-//        if (optionalCleaner.isPresent()) {
-//            Cleaner cleaner = optionalCleaner.get();
-//            cleanerRepository.delete(cleanerId);
-//        } else {
-//            throw new IllegalArgumentException("Cleaner not found with ID: " + cleanerId);
-//        }
-
-
         var foundCleaner = cleanerRepository.findById(cleanerId).orElseThrow(()-> new IllegalArgumentException("clearner not found"));
         cleanerRepository.delete(foundCleaner);
     }
