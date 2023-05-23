@@ -7,6 +7,7 @@ import Neat.and.Tidy.Solutions.cleaning.service.app.data.models.Feedback;
 
 import java.util.List;
 
+<<<<<<< HEAD
 public interface AdminService {
 //    String registerAdmin(AdminDTO admin);
 //    String login(String username, String password);
@@ -18,3 +19,8 @@ public interface AdminService {
     void deleteCleaner(Long cleanerId);
     boolean update(Admin admin);
 }
+=======
+//public interface AdminService {
+//
+//}
+>>>>>>> 86c0bdf384fc61d4669ba4734f9abaa728f84f54

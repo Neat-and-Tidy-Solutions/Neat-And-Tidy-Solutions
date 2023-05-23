@@ -29,6 +29,7 @@ public class Customer {
     private String contactNumber;
     private String address;
     private Gender gender;
+<<<<<<< HEAD
 
 
 
@@ -46,4 +47,7 @@ public class Customer {
 //            booking.setCustomer(null);
 //        }
 //    }
+=======
+    private String password;
+>>>>>>> 86c0bdf384fc61d4669ba4734f9abaa728f84f54
 }
