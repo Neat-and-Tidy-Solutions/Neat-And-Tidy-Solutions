@@ -1,10 +1,7 @@
 package Neat.and.Tidy.Solutions.cleaning.service.app.data.models;
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -14,12 +11,13 @@ import java.util.List;
 @NoArgsConstructor
 @Getter
 @Setter
-@Table(name = "customers")
+@Builder
 public class Customer {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private String name;
+    private String firstName;
+    private String secondName;
 
     @OneToMany(mappedBy = "customer", cascade = CascadeType.ALL)
     private List<Booking> bookings;
@@ -29,25 +27,5 @@ public class Customer {
     private String contactNumber;
     private String address;
     private Gender gender;
-<<<<<<< HEAD
-
-
-
-//    public void addBooking(Booking booking) {
-//        if (bookings == null) {
-//            bookings = new ArrayList<>();
-//        }
-//        bookings.add(booking);
-//        booking.setCustomer(this);
-//    }
-//
-//    public void removeBooking(Booking booking) {
-//        if (bookings != null) {
-//            bookings.remove(booking);
-//            booking.setCustomer(null);
-//        }
-//    }
-=======
     private String password;
->>>>>>> 86c0bdf384fc61d4669ba4734f9abaa728f84f54
 }

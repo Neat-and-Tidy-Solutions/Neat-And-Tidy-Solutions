@@ -11,9 +11,11 @@ import lombok.Setter;
 @Getter
 @Setter
 public class RegisterCustomerRequest {
-    private String name;
+    private String firstName;
+    private String secondName;
     private String email;
     private String contactNumber;
     private String address;
     private Gender gender;
+    private String password;
 }

@@ -8,63 +8,66 @@
 //
 //@Configuration
 //public class AppConfig {
-//    @Value("${cloudinary.cloud.name}")
-//    private String cloudName;
-//    @Value("${cloudinary.api.key}")
-//    private String apiKey;
-//    @Value("${cloudinary.api.secret}")
-//    private String apiSecret;
+////    @Value("${cloudinary.cloud.name}")
+////    private String cloudName;
+////    @Value("${cloudinary.api.key}")
+////    private String apiKey;
+////    @Value("${cloudinary.api.secret}")
+////    private String apiSecret;
+////
+////    @Value("${google.distance.url}")
+////    private String googleDistanceUrl;
+////    @Value("${google.api.key}")
+////    private String googleApiKey;
+////
+////    @Value("${mail.api.key}")
+////    private String mailApiKey;
+////
+////    @Value("${sendinblue.mail.url}")
+////    private String mailUrl;
+////
+////    @Value("${jwt.secret.key}")
+////    private String jwtSecret;
+////
+////    @Bean
+////    public ModelMapper modelMapper(){
+////        return new ModelMapper();
+////    }
+////
+////    @Bean
+////    public Cloudinary cloudinary(){
+////        return new Cloudinary(
+////                ObjectUtils.asMap(
+////                        "cloud_name",cloudName,
+////                        "api_key",apiKey,
+////                        "api_secret",apiSecret
+////                )
+////        );
+////    }
+////
+////    @Bean
+////    public MailConfig mailConfig(){
+////        return new MailConfig(mailApiKey, mailUrl);
+////    }
+////
+////
+////    @Bean
+////    public DistanceConfig distanceConfig(){
+////        return new DistanceConfig(googleDistanceUrl, googleApiKey);
+////    }
+////
+////
 //
-//    @Value("${google.distance.url}")
-//    private String googleDistanceUrl;
-//    @Value("${google.api.key}")
-//    private String googleApiKey;
+//import org.springframework.context.annotation.Bean;
 //
-//    @Value("${mail.api.key}")
-//    private String mailApiKey;
-//
-//    @Value("${sendinblue.mail.url}")
-//    private String mailUrl;
-//
-//    @Value("${jwt.secret.key}")
-//    private String jwtSecret;
-//
-//    @Bean
-//    public ModelMapper modelMapper(){
-//        return new ModelMapper();
-//    }
-//
-//    @Bean
-//    public Cloudinary cloudinary(){
-//        return new Cloudinary(
-//                ObjectUtils.asMap(
-//                        "cloud_name",cloudName,
-//                        "api_key",apiKey,
-//                        "api_secret",apiSecret
-//                )
-//        );
-//    }
-//
-//    @Bean
-//    public MailConfig mailConfig(){
-//        return new MailConfig(mailApiKey, mailUrl);
-//    }
-//
-//
-//    @Bean
-//    public DistanceConfig distanceConfig(){
-//        return new DistanceConfig(googleDistanceUrl, googleApiKey);
-//    }
-//
-//
-//    @Bean
+//@Bean
 //    public PasswordEncoder passwordEncoder(){
 //        return new BCryptPasswordEncoder();
 //    }
 //
-//    @Bean
-//    public JwtUtil jwtUtil(){
-//        return new JwtUtil(jwtSecret);
-//    }
-//
-//}
+////    @Bean
+////    public JwtUtil jwtUtil(){
+////        return new JwtUtil(jwtSecret);
+////    }
+////
+////}

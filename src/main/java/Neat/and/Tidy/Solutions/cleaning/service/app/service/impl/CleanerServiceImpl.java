@@ -4,7 +4,9 @@ import Neat.and.Tidy.Solutions.cleaning.service.app.data.dto.request.*;
 import Neat.and.Tidy.Solutions.cleaning.service.app.data.dto.response.*;
 import Neat.and.Tidy.Solutions.cleaning.service.app.data.models.Cleaner;
 import Neat.and.Tidy.Solutions.cleaning.service.app.service.CleanerService;
+import org.springframework.stereotype.Service;
 
+@Service
 public class CleanerServiceImpl implements CleanerService {
     @Override
     public Cleaner register(RegisterCleanerRequest registerCleanerRequest) {

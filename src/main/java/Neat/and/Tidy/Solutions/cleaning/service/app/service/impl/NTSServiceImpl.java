@@ -1,4 +1,4 @@
-package Neat.and.Tidy.Solutions.cleaning.service.app.service;
+package Neat.and.Tidy.Solutions.cleaning.service.app.service.impl;
 
 import Neat.and.Tidy.Solutions.cleaning.service.app.data.dto.request.CreateServiceRequest;
 import Neat.and.Tidy.Solutions.cleaning.service.app.data.dto.response.CreateServiceResponse;
@@ -6,6 +6,7 @@ import Neat.and.Tidy.Solutions.cleaning.service.app.data.dto.response.FindServic
 import Neat.and.Tidy.Solutions.cleaning.service.app.data.models.Services;
 import Neat.and.Tidy.Solutions.cleaning.service.app.data.repositories.ServiceRepository;
 import Neat.and.Tidy.Solutions.cleaning.service.app.exception.NTSServiceNotFoundException;
+import Neat.and.Tidy.Solutions.cleaning.service.app.service.NTSService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -15,6 +16,7 @@ import java.util.Optional;
 @RequiredArgsConstructor
 @Service
 public class NTSServiceImpl implements NTSService {
+
     private final ServiceRepository serviceRepository;
     @Override
     public CreateServiceResponse createService(CreateServiceRequest createServiceRequest) {
@@ -41,7 +43,7 @@ public class NTSServiceImpl implements NTSService {
                 .build();
     }
     public FindServiceResponse findServiceByName(String serviceName){
-        Services foundService = serviceRepository.findServiceByname(serviceName).orElseThrow(NTSServiceNotFoundException::new);
+        Services foundService = serviceRepository.findServiceByName(serviceName).orElseThrow(NTSServiceNotFoundException::new);
         return getFindServiceResponse(foundService);
     }
     public List<Services> findAllServices(){

@@ -16,4 +16,6 @@ public class RegisterCustomerResponse {
     private Long id;
     private String message;
     private String email;
+    private String firstName;
+    private String secondName;
 }

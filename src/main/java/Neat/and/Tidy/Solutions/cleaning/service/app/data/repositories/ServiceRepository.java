@@ -10,5 +10,5 @@ import java.util.Optional;
 @Repository
 public interface ServiceRepository extends JpaRepository<Services, Long> {
 //    List<Services> findServiceById(Long id);
-    Optional<Services> findServiceByname(String name);
+    Optional<Services> findServiceByName(String name);
 }

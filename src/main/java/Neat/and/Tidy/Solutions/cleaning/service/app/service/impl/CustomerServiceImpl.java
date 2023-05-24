@@ -1,36 +1,54 @@
-package Neat.and.Tidy.Solutions.cleaning.service.app.service;
+package Neat.and.Tidy.Solutions.cleaning.service.app.service.impl;
 
 import Neat.and.Tidy.Solutions.cleaning.service.app.data.dto.request.*;
 import Neat.and.Tidy.Solutions.cleaning.service.app.data.dto.response.*;
 import Neat.and.Tidy.Solutions.cleaning.service.app.data.models.Customer;
 import Neat.and.Tidy.Solutions.cleaning.service.app.data.repositories.CustomerRepository;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import Neat.and.Tidy.Solutions.cleaning.service.app.exception.UserAlreadyExistsException;
+import Neat.and.Tidy.Solutions.cleaning.service.app.service.CustomerService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.util.Optional;
 
-public class CustomerServiceImpl implements CustomerService{
+@Service
+public class CustomerServiceImpl implements CustomerService {
+
+    @Autowired
     private CustomerRepository customerRepository;
-    private BCryptPasswordEncoder bCryptPasswordEncoder;
-
-    public CustomerServiceImpl(CustomerRepository customerRepository, BCryptPasswordEncoder bCryptPasswordEncoder){
-        this.customerRepository = customerRepository;
-        this.bCryptPasswordEncoder = bCryptPasswordEncoder;
-    }
-    @Override
-    public Customer register(RegisterCustomerRequest registerCustomerRequest) {
-        return null;
-    }
-
-
 
     @Override
-    public boolean validateUser(LoginRequest loginRequest) {
-        Optional<Customer> customer = customerRepository.findByEmail(loginRequest.getEmail());
-        if(customer.isPresent() && bCryptPasswordEncoder.matches(loginRequest.getPassword(), customer.get().getPassword())){
-            return true;
+    public RegisterCustomerResponse register(RegisterCustomerRequest registerCustomerRequest) {
+        Optional<Customer> customer = customerRepository.findByEmail(registerCustomerRequest.getEmail());
+        if(customer.isPresent()) throw new UserAlreadyExistsException("Customer with email address exists already");
+        Customer customerToBeCreated = Customer.builder()
+                .address(registerCustomerRequest.getAddress())
+                .firstName(registerCustomerRequest.getFirstName())
+                .secondName(registerCustomerRequest.getSecondName())
+                .gender(registerCustomerRequest.getGender())
+                .contactNumber(registerCustomerRequest.getContactNumber())
+                .build();
+
+        Customer newCustomer = customerRepository.save(customerToBeCreated);
+        return RegisterCustomerResponse.builder()
+                .id(newCustomer.getId())
+                .email(newCustomer.getEmail())
+                .firstName(newCustomer.getFirstName())
+                .secondName(newCustomer.getSecondName())
+                .build();
+    }
+
+    @Override
+    public boolean login(LoginRequest loginRequest) {
+        String email = loginRequest.getEmail();
+        String password = loginRequest.getPassword();
+
+        Customer customer = customerRepository.findCustomerByEmailAndPassword(password, email);
+
+        if (customer != null && customer.getPassword().equals(password)) {
+            return true; // Login successful
         }
-        return false;
+
+        return false; // Login failed
     }
-
-
 }
