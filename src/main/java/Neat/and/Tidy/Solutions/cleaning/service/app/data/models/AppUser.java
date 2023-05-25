@@ -25,3 +25,4 @@ public class AppUser {
     @Enumerated(value = EnumType.STRING)
     private Gender gender;
 }
+

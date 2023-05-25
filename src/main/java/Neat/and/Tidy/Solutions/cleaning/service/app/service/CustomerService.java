@@ -1,11 +1,11 @@
 package Neat.and.Tidy.Solutions.cleaning.service.app.service;
 
 import Neat.and.Tidy.Solutions.cleaning.service.app.data.dto.request.*;
-import Neat.and.Tidy.Solutions.cleaning.service.app.data.models.Customer;
+import Neat.and.Tidy.Solutions.cleaning.service.app.data.dto.response.RegisterCustomerResponse;
 
 public interface CustomerService {
-    Customer register(RegisterCustomerRequest registerCustomerRequest);
+    RegisterCustomerResponse register(RegisterCustomerRequest registerCustomerRequest);
+    boolean login(LoginRequest loginRequest);
 
-    boolean validateUser(LoginRequest loginRequest);
 
 }
