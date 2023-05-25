@@ -18,8 +18,5 @@ public class RegisterCleanerRequest {
     private String email;
     private String password;
     private String contactNumber;
-    @OneToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
-    private Guarantor guarantor;
-    @Enumerated(value = EnumType.STRING)
-    private Gender gender;
+
 }
