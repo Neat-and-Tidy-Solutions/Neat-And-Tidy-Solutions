@@ -12,17 +12,11 @@ import lombok.Setter;
 @Setter
 public class Cleaner {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
-    private String name;
-    @Column(unique = true)
-    private String email;
-    private String password;
+    @OneToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL )
+    private AppUser appuser;
     private String profileImage;
-    private String contactNumber;
     private String address;
     @OneToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     private Guarantor guarantor;
-    @Enumerated(value = EnumType.STRING)
-    private Gender gender;
 }
