@@ -15,7 +15,9 @@ public class Guarantor {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private String id;
     private String name;
+    @Column(unique = true)
     private String email;
+    private String image;
     private String contactNumber;
     private String address;
     private String relationship;

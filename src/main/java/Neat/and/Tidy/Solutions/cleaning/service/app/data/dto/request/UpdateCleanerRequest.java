@@ -1,19 +1,21 @@
 package Neat.and.Tidy.Solutions.cleaning.service.app.data.dto.request;
 
-import Neat.and.Tidy.Solutions.cleaning.service.app.data.models.Gender;
+import Neat.and.Tidy.Solutions.cleaning.service.app.data.models.Guarantor;
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.springframework.web.multipart.MultipartFile;
 
 @AllArgsConstructor
 @NoArgsConstructor
 @Getter
 @Setter
-public class RegisterCustomerRequest {
-    private String username;
+public class UpdateCleanerRequest {
     private String email;
-    private String contactNumber;
+    private String FullName;
+    private MultipartFile profileImage;
     private String address;
-    private Gender gender;
+
 }
