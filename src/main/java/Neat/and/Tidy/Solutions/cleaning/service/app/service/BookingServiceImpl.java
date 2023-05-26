@@ -33,12 +33,7 @@ public class BookingServiceImpl implements BookingService {
                 .cleaningServiceName(services.getName())
                 .bookingDateTime(bookingRequest.getBookingDateTime())
                 .build();
-
-
-
-
-
-
+        bookingRepository.save(booking);
         return bookingRepository.save(booking);
     }
     @Override
