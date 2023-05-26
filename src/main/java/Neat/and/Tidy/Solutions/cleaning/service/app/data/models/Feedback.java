@@ -17,7 +17,6 @@ import lombok.Setter;
 public class Feedback {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-
     private Long id;
     private String feedBack;
     private Rating rating;

@@ -18,8 +18,8 @@ import java.util.Set;
 @Entity
 public class NTSServices {
     @Id
-    private Long id;
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
     @OneToMany(fetch = FetchType.LAZY)
     private List<Services> services = new ArrayList<>();
 }

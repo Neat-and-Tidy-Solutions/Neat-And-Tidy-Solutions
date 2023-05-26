@@ -1,60 +1,56 @@
 package Neat.and.Tidy.Solutions.cleaning.service.app.service;
 
-import Neat.and.Tidy.Solutions.cleaning.service.app.data.dto.request.*;
+import Neat.and.Tidy.Solutions.cleaning.service.app.data.dto.request.LoginRequest;
+import Neat.and.Tidy.Solutions.cleaning.service.app.data.dto.request.UpdateCustomerRequest;
 import Neat.and.Tidy.Solutions.cleaning.service.app.data.dto.response.RegisterCustomerResponse;
+import Neat.and.Tidy.Solutions.cleaning.service.app.data.models.AppUser;
 import Neat.and.Tidy.Solutions.cleaning.service.app.data.models.Customer;
+import Neat.and.Tidy.Solutions.cleaning.service.app.data.repositories.AppUserRepository;
 import Neat.and.Tidy.Solutions.cleaning.service.app.data.repositories.CustomerRepository;
-import Neat.and.Tidy.Solutions.cleaning.service.app.exception.UserAlreadyExistsException;
-import Neat.and.Tidy.Solutions.cleaning.service.app.exception.UserNotFoundException;
+import Neat.and.Tidy.Solutions.cleaning.service.app.exception.NTSManagementException;
 import lombok.AllArgsConstructor;
-import lombok.NoArgsConstructor;
-import lombok.RequiredArgsConstructor;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-
-import java.util.Optional;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
-//@AllArgsConstructor
+import java.util.List;
+import java.util.Objects;
+
 @Service
-@RequiredArgsConstructor
-public class CustomerServiceImpl implements CustomerService {
-private CustomerRepository customerRepository;
-private BCryptPasswordEncoder passwordEncoder;
-
-    public CustomerServiceImpl(CustomerRepository customerRepository, BCryptPasswordEncoder passwordEncoder) {
-        this.customerRepository = customerRepository;
-        this.passwordEncoder = passwordEncoder;
-    }
-
+@AllArgsConstructor
+public class CustomerServiceImpl implements CustomerService{
+    private final AppUserRepository appUserRepository;
+    private final CustomerRepository customerRepository;
     @Override
-    public RegisterCustomerResponse register(RegisterCustomerRequest registerCustomerRequest) {
-        Optional<Customer> customer = customerRepository.findByEmail(registerCustomerRequest.getEmail());
-        if(customer.isPresent()) throw new UserAlreadyExistsException("Customer with email address exists already!");
-        Customer customerToBeCreated = Customer.builder()
-                .address(registerCustomerRequest.getAddress())
-                .firstName(registerCustomerRequest.getFirstName())
-                .secondName(registerCustomerRequest.getSecondName())
-                .gender(registerCustomerRequest.getGender())
-                .password(passwordEncoder.encode(registerCustomerRequest.getPassword()))
-                .contactNumber(registerCustomerRequest.getContactNumber())
-                .build();
+    public RegisterCustomerResponse updateProfile(UpdateCustomerRequest updateCustomerRequest) {
+        AppUser foundCustomer = appUserRepository.findByEmailIgnoreCase(updateCustomerRequest.getEmail());
+        Customer customer = new Customer();
+        if(Objects.isNull(foundCustomer)) throw new NTSManagementException("user not found");
+        foundCustomer.setFullName(updateCustomerRequest.getFullName());
+        customer.setAppUser(foundCustomer);
+        customer.setId(foundCustomer.getId());
+        customer.setAddress(updateCustomerRequest.getAddress());
+        customer.setGender(foundCustomer.getGender());
+        customerRepository.save(customer);
 
-        Customer newCustomer = customerRepository.save(customerToBeCreated);
         return RegisterCustomerResponse.builder()
-                .id(newCustomer.getId())
-                .email(newCustomer.getEmail())
-                .firstName(newCustomer.getFirstName())
-                .secondName(newCustomer.getSecondName())
+                .message("Thank you customer "+ foundCustomer.getUsername()
+                        + ", your profile has been updated!")
                 .build();
+    }
+    @Override
+    public Customer getCustomerById(Long customerId) {
+        return customerRepository.findById(customerId).orElseThrow(()->
+                new NTSManagementException("Customer not found"));
     }
 
     @Override
-    public boolean login(LoginRequest loginRequest) {
-        Customer customer = customerRepository.findByEmail(loginRequest.getEmail())
-                .orElseThrow(()-> new UserNotFoundException("User with this email not found"));
-        if (passwordEncoder.matches(loginRequest.getPassword(), customer.getPassword()))return true;
-        return false;
+    public List<Customer> getCleaners() {
+        return customerRepository.findAll();
     }
+
+    @Override
+    public void deleteCustomerById(Long customerId) {
+customerRepository.deleteById(customerId);
+    }
+
 
 }
