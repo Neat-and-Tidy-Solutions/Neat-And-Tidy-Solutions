@@ -12,6 +12,6 @@ import java.util.List;
 public interface NTSService {
     CreateServiceResponse createService(CreateServiceRequest createServiceRequest);
     FindServiceResponse findServiceById(Long serviceId);
-    FindServiceResponse findServiceByName(String serviceName);
+//    FindServiceResponse findServiceByName(String serviceName);
     List<Services> findAllServices();
 }

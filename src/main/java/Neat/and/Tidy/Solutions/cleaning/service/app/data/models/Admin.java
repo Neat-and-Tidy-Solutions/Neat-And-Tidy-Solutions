@@ -21,6 +21,7 @@ public class Admin {
     private String username;
     private String email;
     private String password;
+    private Status status;
     @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     private List<Customer> customerDetails;
     @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)

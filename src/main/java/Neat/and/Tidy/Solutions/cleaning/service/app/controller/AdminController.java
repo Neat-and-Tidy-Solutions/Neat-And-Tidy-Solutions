@@ -1,19 +1,20 @@
 package Neat.and.Tidy.Solutions.cleaning.service.app.controller;
 
-import Neat.and.Tidy.Solutions.cleaning.service.app.data.dto.AdminDTO;
-import Neat.and.Tidy.Solutions.cleaning.service.app.data.models.Admin;
 import Neat.and.Tidy.Solutions.cleaning.service.app.data.models.Booking;
 import Neat.and.Tidy.Solutions.cleaning.service.app.data.models.Feedback;
 import Neat.and.Tidy.Solutions.cleaning.service.app.service.AdminService;
+import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 @RestController
-@RequestMapping("/admin")
+@RequestMapping("/api/admin")
+@Controller
+@AllArgsConstructor
 public class AdminController {
 
     @Autowired

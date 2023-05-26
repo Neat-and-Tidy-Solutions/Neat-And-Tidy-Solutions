@@ -10,7 +10,6 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 public class CreateServiceRequest {
-//    @NotNull(message = "Input cannot be empty.")
     private String serviceName;
     private String serviceDescription;
 }

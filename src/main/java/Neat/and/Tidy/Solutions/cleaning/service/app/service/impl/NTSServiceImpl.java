@@ -8,6 +8,7 @@ import Neat.and.Tidy.Solutions.cleaning.service.app.data.repositories.ServiceRep
 import Neat.and.Tidy.Solutions.cleaning.service.app.exception.NTSServiceNotFoundException;
 import Neat.and.Tidy.Solutions.cleaning.service.app.service.NTSService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.context.annotation.Primary;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -15,6 +16,7 @@ import java.util.Optional;
 
 @RequiredArgsConstructor
 @Service
+@Primary
 public class NTSServiceImpl implements NTSService {
 
     private final ServiceRepository serviceRepository;
