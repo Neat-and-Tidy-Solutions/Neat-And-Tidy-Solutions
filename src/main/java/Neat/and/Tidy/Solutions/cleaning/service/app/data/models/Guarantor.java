@@ -13,7 +13,7 @@ import lombok.Setter;
 public class Guarantor {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private String id;
+    private Long id;
     private String name;
     @Column(unique = true)
     private String email;
@@ -21,4 +21,5 @@ public class Guarantor {
     private String contactNumber;
     private String address;
     private String relationship;
+    private boolean isVerified;
 }

@@ -11,8 +11,8 @@ import lombok.Data;
 @AllArgsConstructor
 public class AppUserRequest {
     private String username;
-    @Column(unique = true)
     private String fullName;
+    @Column(unique = true)
     private String email;
     private String password;
     private String contactNumber;
