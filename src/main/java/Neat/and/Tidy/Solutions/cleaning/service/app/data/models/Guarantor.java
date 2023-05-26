@@ -12,8 +12,8 @@ import lombok.Setter;
 @Setter
 public class Guarantor {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private String id;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
     private String name;
     @Column(unique = true)
     private String email;
@@ -21,4 +21,5 @@ public class Guarantor {
     private String contactNumber;
     private String address;
     private String relationship;
+    private boolean isVerified;
 }

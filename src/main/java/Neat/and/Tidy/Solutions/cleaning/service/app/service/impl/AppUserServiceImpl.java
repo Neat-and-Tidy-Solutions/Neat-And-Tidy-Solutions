@@ -33,7 +33,7 @@ public class AppUserServiceImpl implements AppUserService {
         AppUser foundUser = appUserRepository.findByEmailIgnoreCase(appUserRequest.getEmail());
         if(Objects.isNull(foundUser)) throw new NTSManagementException("user not found");
         try{
-            if (BCrypt.checkpw(appUserRequest.getPassword(), foundUser.getPassword())){
+            if (!BCrypt.checkpw(appUserRequest.getPassword(), foundUser.getPassword())){
                 throw new NTSManagementException("Password does not match");
             }
         } catch(NTSManagementException e){

@@ -8,7 +8,6 @@ import Neat.and.Tidy.Solutions.cleaning.service.app.data.repositories.ServiceRep
 import Neat.and.Tidy.Solutions.cleaning.service.app.exception.NTSServiceNotFoundException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
-
 import java.util.List;
 import java.util.Optional;
 
@@ -41,7 +40,7 @@ public class NTSServiceImpl implements NTSService {
                 .build();
     }
     public FindServiceResponse findServiceByName(String serviceName){
-        Services foundService = serviceRepository.findServiceByname(serviceName).orElseThrow(NTSServiceNotFoundException::new);
+        Services foundService = serviceRepository.findServiceByName(serviceName).orElseThrow(NTSServiceNotFoundException::new);
         return getFindServiceResponse(foundService);
     }
     public List<Services> findAllServices(){
