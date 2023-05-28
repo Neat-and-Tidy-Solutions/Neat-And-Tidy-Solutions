@@ -18,12 +18,15 @@ public class Admin {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
+    private String name;
     private String username;
-    private String email;
+    private String emailAddress;
     private String password;
     private Status status;
+//    private String body;
     @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     private List<Customer> customerDetails;
     @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     private List<Cleaner> cleanersDetails;
+
 }

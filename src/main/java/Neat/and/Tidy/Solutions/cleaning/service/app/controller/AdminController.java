@@ -20,36 +20,21 @@ public class AdminController {
     @Autowired
     private AdminService adminService;
 
-//    @PostMapping("/register")
-//    public ResponseEntity<String> registerAdmin(@RequestBody AdminDTO adminDTO) {
-//        Admin admin = convertToAdmin(adminDTO);
-//
-//        boolean isRegistered = Boolean.parseBoolean(adminService.registerAdmin(adminDTO));
-//
-//        if (isRegistered) {
-//            return ResponseEntity.ok("Admin registered successfully");
-//        } else {
-//            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Failed to register admin");
-//        }
+//    @PostMapping("/cleaner/approve/{cleanerId}")
+//    public ResponseEntity<String> approveCleaner(@PathVariable Long cleanerId) {
+//        adminService.approveCleaner(cleanerId);
+//        return ResponseEntity.ok("Cleaner approved successfully");
 //    }
-//
-//    // Other methods and dependencies for the AdminController
-//
-//    private Admin convertToAdmin(AdminDTO adminDTO) {
-//        Admin admin = new Admin();
-//        admin.setUsername(adminDTO.getUsername());
-//        admin.setPassword(adminDTO.getPassword());
-//        // Set other properties as needed
-//
-//        return admin;
-//    }
-
-
 
     @PostMapping("/cleaner/approve/{cleanerId}")
     public ResponseEntity<String> approveCleaner(@PathVariable Long cleanerId) {
-        adminService.approveCleaner(cleanerId);
-        return ResponseEntity.ok("Cleaner approved successfully");
+        boolean isApproved = adminService.approveCleaner(cleanerId);
+
+        if (isApproved) {
+            return ResponseEntity.ok("Cleaner approved successfully");
+        } else {
+            return ResponseEntity.badRequest().body("Guarantor is missing necessary attributes");
+        }
     }
 
     @PostMapping("/cleaner/reject/{cleanerId}")

@@ -6,7 +6,7 @@
 //import org.springframework.http.ResponseEntity;
 //import org.springframework.web.client.RestTemplate;
 //
-//public class MailServiceImpl implements MailService{
+//public class MailServiceImpl implements MailServiceImpl{
 //
 //    private final MailConfig mailConfig;
 //
