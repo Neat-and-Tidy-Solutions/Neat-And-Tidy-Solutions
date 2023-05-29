@@ -18,51 +18,20 @@ public class MailServiceImpl implements MailService{
     @Autowired
     private JavaMailSender javaMailSender;
 
-    private Admin admin;
-
-    public void send(String to, String email) throws MessagingException {
+    public void sendEmail(String toEmail, String subject, String body) throws MessagingException {
         try {
             MimeMessage mimeMessage = javaMailSender.createMimeMessage();
             MimeMessageHelper mimeMessageHelper = new MimeMessageHelper(mimeMessage, true);
-            mimeMessageHelper.setSubject("Invitation to become an admin of our cleaning service industry");
             mimeMessageHelper.setFrom("em123nest@gmail.com");
-            mimeMessageHelper.setTo(to);
-            mimeMessageHelper.setText(email,
-
-                    "Dear " + admin.getName() + ", \n\n" +
-                            "We are pleased to invite you to become an admin of the cleaning service industry. As an admin, you will have the ability to manage users, create and edit cleaning jobs, and track the progress of cleaning jobs. \n\n" +
-                            "To accept this invitation, please click on the following link: \n\n" +
-                            "http://localhost:8080/admin/accept-invitation \n\n" +
-                            "Thank you for your time and consideration. \n\n" +
-                            "Sincerely, \n\n" +
-                            "The NTSJ Cleaning Service Industry Team");
+            mimeMessageHelper.setTo(toEmail);
+            mimeMessageHelper.setText(body);
+            mimeMessageHelper.setSubject(subject);
             javaMailSender.send(mimeMessage);
+            System.out.println("Message sent successfully");
         }catch(MessagingException e) {
             log.info("problem2: ");
             log.info(e.getMessage());
             throw new RuntimeException(e);
         }
     }
-
-
-//    @Override
-//    public MailServiceImpl(JavaMailSender mailSender) {
-//        this.javaMailSender = javaMailSender;
-//    }
-
-    //    public void send(MailMessage) throws MessagingException {
-//        try {
-//            MimeMessage mimeMessage = javaMailSender.createMimeMessage();
-//            MimeMessageHelper mimeMessageHelper = new MimeMessageHelper(mimeMessage, true);
-//            mimeMessageHelper.setSubject("Invitation to become an admin of our cleaning service industry");
-//            mimeMessageHelper.setFrom("em123nest@gmail.com");
-//            mimeMessageHelper.setTo();
-//            mimeMessageHelper.setText(email, true);
-//            javaMailSender.send(mimeMessage);
-//        }catch(MessagingException e) {
-//            log.info("problem2: ");
-//            log.info(e.getMessage());
-//            throw RuntimeException(e);
-//        }
-//    }
 }
