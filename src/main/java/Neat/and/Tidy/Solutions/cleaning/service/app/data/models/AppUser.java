@@ -1,6 +1,5 @@
 package Neat.and.Tidy.Solutions.cleaning.service.app.data.models;
 
-import Neat.and.Tidy.Solutions.cleaning.service.app.data.dto.AdminDTO;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -9,24 +8,40 @@ import lombok.Setter;
 
 import java.util.List;
 
+@Entity
 @AllArgsConstructor
 @NoArgsConstructor
 @Getter
 @Setter
-@Entity
-public class Admin {
+public class AppUser {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
-    private String name;
+
+//    private String name;
+
+    private String email;
+
     private String username;
+
+    @Column(unique = true)
     private String emailAddress;
+
     private String password;
-    private Status status;
-//    private String body;
+
+    private CleanerStatus cleanerStatus;
+
     @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     private List<Customer> customerDetails;
+
     @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     private List<Cleaner> cleanersDetails;
 
+    @Column(unique = true)
+    private String fullName;
+
+    private String contactNumber;
+
+    @Enumerated(value = EnumType.STRING)
+    private Gender gender;
 }

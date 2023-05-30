@@ -2,6 +2,7 @@
 //
 //import Neat.and.Tidy.Solutions.cleaning.service.app.data.models.AppUser;
 //import lombok.AllArgsConstructor;
+
 //import org.springframework.security.core.GrantedAuthority;
 //import org.springframework.security.core.authority.SimpleGrantedAuthority;
 //import org.springframework.security.core.userdetails.UserDetails;
@@ -11,7 +12,7 @@
 //
 //@AllArgsConstructor
 //public class SecureUser implements UserDetails {
-//    private final AppUser appUser;
+//    private final AppUser;
 //    @Override
 //    public String getUsername() {
 //        return appUser.getEmail();
@@ -57,4 +58,3 @@
 //    public boolean isEnabled() {
 //        return true;
 //    }
-//}

@@ -8,6 +8,5 @@ import java.util.Optional;
 
 @Repository
 public interface CleanerRepository extends JpaRepository<Cleaner, Long> {
-
     Optional<Cleaner> findByEmail(String email);
 }

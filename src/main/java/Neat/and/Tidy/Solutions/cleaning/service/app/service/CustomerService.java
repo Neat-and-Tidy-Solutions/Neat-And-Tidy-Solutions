@@ -5,10 +5,12 @@ import Neat.and.Tidy.Solutions.cleaning.service.app.data.dto.response.RegisterCu
 import Neat.and.Tidy.Solutions.cleaning.service.app.data.models.Customer;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public interface CustomerService {
-    RegisterCustomerResponse register(RegisterCustomerRequest registerCustomerRequest);
-
-    boolean login(LoginRequest loginRequest);
-
+    RegisterCustomerResponse updateProfile(UpdateCustomerRequest updateCustomerRequest);
+    Customer getCustomerById(Long id);
+    List<Customer> getCleaners();
+    void deleteCustomerById(Long id);
 }

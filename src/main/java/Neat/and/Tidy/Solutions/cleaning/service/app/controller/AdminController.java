@@ -2,19 +2,16 @@ package Neat.and.Tidy.Solutions.cleaning.service.app.controller;
 
 import Neat.and.Tidy.Solutions.cleaning.service.app.data.models.Booking;
 import Neat.and.Tidy.Solutions.cleaning.service.app.data.models.Feedback;
+import Neat.and.Tidy.Solutions.cleaning.service.app.exception.ResourceNotFoundException;
 import Neat.and.Tidy.Solutions.cleaning.service.app.service.AdminService;
-import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 @RestController
 @RequestMapping("/api/admin")
-@Controller
-@AllArgsConstructor
 public class AdminController {
 
     @Autowired
@@ -27,14 +24,9 @@ public class AdminController {
 //    }
 
     @PostMapping("/cleaner/approve/{cleanerId}")
-    public ResponseEntity<String> approveCleaner(@PathVariable Long cleanerId) {
-        boolean isApproved = adminService.approveCleaner(cleanerId);
-
-        if (isApproved) {
-            return ResponseEntity.ok("Cleaner approved successfully");
-        } else {
-            return ResponseEntity.badRequest().body("Guarantor is missing necessary attributes");
-        }
+    public ResponseEntity<String> approveCleaner(@PathVariable Long cleanerId) throws ResourceNotFoundException {
+        adminService.approveCleaner(cleanerId);
+        return ResponseEntity.ok("Cleaner approved successfully");
     }
 
     @PostMapping("/cleaner/reject/{cleanerId}")

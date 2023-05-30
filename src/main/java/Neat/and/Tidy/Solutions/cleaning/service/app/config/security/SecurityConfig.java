@@ -1,5 +1,5 @@
 //package Neat.and.Tidy.Solutions.cleaning.service.app.config.security;
-//
+
 //import lombok.AllArgsConstructor;
 //import org.springframework.context.annotation.Bean;
 //import org.springframework.context.annotation.Configuration;

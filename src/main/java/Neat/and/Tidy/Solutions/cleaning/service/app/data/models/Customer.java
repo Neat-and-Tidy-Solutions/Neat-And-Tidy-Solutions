@@ -2,7 +2,6 @@ package Neat.and.Tidy.Solutions.cleaning.service.app.data.models;
 
 import jakarta.persistence.*;
 import lombok.*;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -19,13 +18,20 @@ public class Customer {
     private String firstName;
     private String secondName;
 
-    @OneToMany(mappedBy = "customer", cascade = CascadeType.ALL)
-    private List<Booking> bookings;
+//    @OneToMany(mappedBy = "customer", cascade = CascadeType.ALL)
+//    private List<Booking> bookings;
 
 
     private String email;
     private String contactNumber;
+    @OneToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    private AppUser appUser;
     private String address;
     private Gender gender;
-    private String password;
+//    @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+//    private List<Booking> bookingList;
+    @OneToMany
+    private List<Booking> bookings;
+
+
 }

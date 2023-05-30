@@ -10,9 +10,8 @@ import lombok.Setter;
 @NoArgsConstructor
 @Getter
 @Setter
-public class RegisterCustomerRequest {
-    private String firstName;
-    private String secondName;
+public class UpdateCustomerRequest {
+    private String fullName;
     private String email;
     private String contactNumber;
     private String address;

@@ -22,17 +22,21 @@ public class Cleaner {
     private String name;
 
 
-    @OneToMany(mappedBy = "cleaner", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "cleanerId")
     private List<Booking> bookings;
+
 
 
     @Column(unique = true)
     private String email;
 
     private String password;
-//    private String profileImage;
+    private String profileImage;
     private String contactNumber;
 
+    @OneToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL )
+    private AppUser appuser;
+//    private String profileImage;
     private String address;
 
     @OneToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
@@ -42,6 +46,8 @@ public class Cleaner {
     private Gender gender;
 
     private boolean approved;
+    private CleanerStatus status;
+
 
     public void setApproved(boolean approveTheCleaner) {
         this.approved = approveTheCleaner;

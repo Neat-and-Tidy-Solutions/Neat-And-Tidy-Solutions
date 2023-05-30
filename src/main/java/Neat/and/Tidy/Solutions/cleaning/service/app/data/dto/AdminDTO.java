@@ -1,6 +1,6 @@
 package Neat.and.Tidy.Solutions.cleaning.service.app.data.dto;
 
-import Neat.and.Tidy.Solutions.cleaning.service.app.data.models.Admin;
+//import Neat.and.Tidy.Solutions.cleaning.service.app.data.models.Admin;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
