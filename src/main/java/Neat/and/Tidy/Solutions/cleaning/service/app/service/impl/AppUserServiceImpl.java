@@ -47,7 +47,4 @@ public class AppUserServiceImpl implements AppUserService {
     private String hashPassword(String password) {
         return BCrypt.hashpw(password, BCrypt.gensalt());
     }
-
-
-
 }

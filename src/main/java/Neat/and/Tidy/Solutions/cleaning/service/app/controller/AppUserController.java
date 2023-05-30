@@ -7,6 +7,7 @@ import Neat.and.Tidy.Solutions.cleaning.service.app.data.models.AppUser;
 import Neat.and.Tidy.Solutions.cleaning.service.app.data.repositories.AppUserRepository;
 import Neat.and.Tidy.Solutions.cleaning.service.app.exception.ResourceNotFoundException;
 import Neat.and.Tidy.Solutions.cleaning.service.app.service.AppUserService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -15,10 +16,19 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping("/appUser")
 public class AppUserController {
     private final AppUserRepository appUserRepository;
+
+    @Autowired
     private AppUserService appUserService;
 
     public AppUserController(AppUserRepository appUserRepository) {
         this.appUserRepository = appUserRepository;
+    }
+
+
+    @PostMapping("/register")
+    public ResponseEntity<?> register(@RequestBody AppUserRequest appUserRequest){
+        appUserService.register(appUserRequest);
+        return ResponseEntity.ok("Registration successful");
     }
 
     @GetMapping("/appusers/{email}")

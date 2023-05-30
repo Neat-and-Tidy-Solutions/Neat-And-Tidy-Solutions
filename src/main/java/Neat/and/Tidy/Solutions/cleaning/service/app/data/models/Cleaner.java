@@ -18,22 +18,14 @@ public class Cleaner {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-
     private String name;
-
-
     @OneToMany(mappedBy = "cleanerId")
     private List<Booking> bookings;
-
-
-
     @Column(unique = true)
     private String email;
-
     private String password;
     private String profileImage;
     private String contactNumber;
-
     @OneToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL )
     private AppUser appuser;
 //    private String profileImage;
