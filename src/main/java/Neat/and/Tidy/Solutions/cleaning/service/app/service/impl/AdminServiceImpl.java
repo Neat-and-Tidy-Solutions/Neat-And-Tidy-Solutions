@@ -41,20 +41,20 @@ public class AdminServiceImpl implements AdminService {
 
 
 //    @EventListener(ApplicationReadyEvent.class)
-    public void sendMail(Cleaner cleaner) throws MessagingException {
-        AppUser appUser = appUserRepository.findById(cleaner);
-        mailServiceImpl.sendEmail("er123nest@gmail.com",
-                "Invitation to be an Admin of NTJS Cleaning Company",
-                    "Dear " + appUser.getFullName() + ", \n\n" +
-                            "We are pleased to invite you to become an admin of the cleaning service industry. As an admin, you will have the ability to manage users, create and edit cleaning jobs, and track the progress of cleaning jobs. \n\n" +
-                            "To accept this invitation, please click on the following link: \n\n" +
-                            "http://localhost:8080/admin/accept-invitation \n\n" +
-                            "Thank you for your time and consideration. \n\n" +
-                            "Sincerely, \n\n" +
-                            "The NTSJ Cleaning Service Industry Team"
-        );
+//    public void sendMail(Cleaner) throws MessagingException {
+//        AppUser = appUserRepository.findById(cleaner);
+//        mailServiceImpl.sendEmail("er123nest@gmail.com",
+//                "Invitation to be an Admin of NTJS Cleaning Company",
+//                    "Dear " + appUser.getFullName() + ", \n\n" +
+//                            "We are pleased to invite you to become an admin of the cleaning service industry. As an admin, you will have the ability to manage users, create and edit cleaning jobs, and track the progress of cleaning jobs. \n\n" +
+//                            "To accept this invitation, please click on the following link: \n\n" +
+//                            "http://localhost:8080/admin/accept-invitation \n\n" +
+//                            "Thank you for your time and consideration. \n\n" +
+//                            "Sincerely, \n\n" +
+//                            "The NTSJ Cleaning Service Industry Team"
+//        );
 
-    }
+//    }
 
 
     public boolean approveCleaner(@PathVariable Long cleanerId) throws ResourceNotFoundException {

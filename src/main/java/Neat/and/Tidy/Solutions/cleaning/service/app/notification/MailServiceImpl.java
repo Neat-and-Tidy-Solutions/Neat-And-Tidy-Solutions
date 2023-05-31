@@ -8,7 +8,7 @@
 //
 //public class MailServiceImpl implements MailServiceImpl{
 //
-//    private final MailConfig mailConfig;
+//    private final MailConfig;
 //
 //    @Override
 //    public String sendHtmlMail(EmailNotificationRequest request) {
