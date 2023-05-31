@@ -15,7 +15,7 @@ public class SendMailServiceImpl implements SendMailService {
     public String sendMail(EmailSendingRequest request) {
         EmailRequest emailRequest = EmailRequest.builder()
                 .to(List.of(new Recipient(request.getRecipientName(), request.getRecipientEmail())))
-                .subject("Invitation to be an Admin of NTJS Cleaning Company\\")
+                .subject("Invitation to be an Admin of NTJS Cleaning Company")
                 .htmlContent(" We are pleased to invite you to become an admin of the cleaning service industry." +
                         " As an admin, you will have the ability to manage users, create and edit cleaning jobs, and track the progress of cleaning jobs." +
                         " To accept this invitation, please click on the following link: " +
