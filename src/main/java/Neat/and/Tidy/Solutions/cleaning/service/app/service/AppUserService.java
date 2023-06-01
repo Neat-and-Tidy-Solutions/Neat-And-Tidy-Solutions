@@ -8,5 +8,7 @@ import Neat.and.Tidy.Solutions.cleaning.service.app.data.models.AppUser;
 public interface AppUserService {
     AppUserResponse register(AppUserRequest appUserRequest);
     AppUserResponse login(AppUserRequest appUserRequest);
+    String forgotPassword(String email);
+    String resetPassword(String token, String newPassword);
 
 }

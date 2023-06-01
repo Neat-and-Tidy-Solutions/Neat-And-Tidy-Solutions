@@ -7,4 +7,5 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface AppUserRepository extends JpaRepository<AppUser, Long> {
     AppUser findByEmailIgnoreCase(String email);
+    AppUser findByToken(String token);
 }

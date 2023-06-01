@@ -26,7 +26,6 @@ public class CleanerServiceImpl implements CleanerService {
     public RegisterCleanerResponse updateProfile(UpdateCleanerRequest updateCleanerRequest) {
         AppUser foundUser = appUserRepository.findByEmailIgnoreCase(updateCleanerRequest.getEmail());
         Guarantor foundGuarantor = guarantorRepository.findGuarantorByEmailIgnoreCase(updateCleanerRequest.getEmail());
-
         Cleaner cleaner = new Cleaner();
         if(Objects.isNull(foundUser)) throw new NTSManagementException("user not found");
         if(Objects.isNull(foundGuarantor)) throw new NTSManagementException("guarantor does not exist");
@@ -36,7 +35,6 @@ public class CleanerServiceImpl implements CleanerService {
         cleaner.setProfileImage(updateCleanerRequest.getProfileImage().toString());
         cleaner.setAddress(updateCleanerRequest.getAddress());
         cleaner.setGuarantor(foundGuarantor);
-
         cleanerRepository.save(cleaner);
         return RegisterCleanerResponse.builder()
                 .message("Thank you" + foundUser.getUsername() +"Profile updated")

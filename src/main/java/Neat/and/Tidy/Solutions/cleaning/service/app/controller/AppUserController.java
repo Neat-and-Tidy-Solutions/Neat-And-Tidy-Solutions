@@ -6,11 +6,9 @@ import Neat.and.Tidy.Solutions.cleaning.service.app.data.dto.response.AppUserRes
 import Neat.and.Tidy.Solutions.cleaning.service.app.service.AppUserService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
+@CrossOrigin
 @RestController
 @RequestMapping("/appUser")
 public class AppUserController {
@@ -29,5 +27,18 @@ public class AppUserController {
         AppUserResponse appUserResponse = appUserService.login(appUserRequest);
 //        return new ResponseEntity<>(appUserResponse, HttpStatus.ACCEPTED);
         return ResponseEntity.ok("Login successful");
+    }
+    @PostMapping("/forgot-password")
+    public ResponseEntity<?> forgotPassword(@RequestBody String email){
+        String response = appUserService.forgotPassword(email);
+        if(!response.startsWith("Invalid")){
+            response = "http://localhost:8080/reset-password?token=" + response;
+        }
+        return new ResponseEntity<>(response, HttpStatus.OK);
+    }
+    @PutMapping("/reset-password")
+    public ResponseEntity<?> resetPassword(@RequestBody String token, @RequestBody String newPassword){
+        String setPassword = appUserService.resetPassword(token, newPassword);
+        return new ResponseEntity<>(setPassword, HttpStatus.OK);
     }
 }

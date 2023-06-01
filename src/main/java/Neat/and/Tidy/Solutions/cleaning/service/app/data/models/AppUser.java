@@ -5,7 +5,7 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-
+import java.time.LocalDateTime;
 @Entity
 @AllArgsConstructor
 @NoArgsConstructor
@@ -24,5 +24,8 @@ public class AppUser {
     private String contactNumber;
     @Enumerated(value = EnumType.STRING)
     private Gender gender;
+    private String token;
+    @Column(columnDefinition = "Timestamp")
+    private LocalDateTime tokenCreationDateTime;
 }
 

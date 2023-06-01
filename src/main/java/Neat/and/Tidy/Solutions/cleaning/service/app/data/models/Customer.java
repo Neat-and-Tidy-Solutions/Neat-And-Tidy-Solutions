@@ -1,5 +1,6 @@
 package Neat.and.Tidy.Solutions.cleaning.service.app.data.models;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -18,7 +19,9 @@ public class Customer {
     @OneToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     private AppUser appUser;
     private String address;
+    @Enumerated(EnumType.STRING)
     private Gender gender;
-    @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL, mappedBy = "customer")
+    @JsonIgnore
     private List<Booking> bookingList;
 }

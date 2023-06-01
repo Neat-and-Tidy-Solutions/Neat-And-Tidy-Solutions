@@ -6,16 +6,14 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+@Data
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-@Data
 public class UpdateCustomerDetailResponse {
     private Long id;
-    private String name;
+    private String message;
     private String email;
-    private String contactNumber;
-    private String address;
-    private Gender gender;
-    private String password;
+    private String firstName;
+    private String secondName;
 }

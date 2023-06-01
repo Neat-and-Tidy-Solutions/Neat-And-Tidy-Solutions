@@ -1,5 +1,4 @@
 package Neat.and.Tidy.Solutions.cleaning.service.app.service;
-
 import Neat.and.Tidy.Solutions.cleaning.service.app.data.dto.request.CreateServiceRequest;
 import Neat.and.Tidy.Solutions.cleaning.service.app.data.dto.response.CreateServiceResponse;
 import Neat.and.Tidy.Solutions.cleaning.service.app.data.dto.response.FindServiceResponse;
@@ -32,7 +31,7 @@ public class NTSServiceImpl implements NTSService {
         if(foundService.isEmpty()) throw new NTSServiceNotFoundException("No service has been created");
         return getFindServiceResponse(foundService.get());
         }
-    public FindServiceResponse getFindServiceResponse(Services foundService) {
+    private FindServiceResponse getFindServiceResponse(Services foundService) {
         return FindServiceResponse.builder()
                 .id(foundService.getId())
                 .serviceName(foundService.getName())

@@ -16,8 +16,9 @@ public class Booking {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
-    @OneToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
-    private Customer customerBooking;
+    //@OneToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    @ManyToOne
+    private Customer customer;
     private String cleaningServiceName;
     private LocalDateTime bookingDateTime;
     private boolean setAccepted;

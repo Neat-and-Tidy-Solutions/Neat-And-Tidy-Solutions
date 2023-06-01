@@ -1,5 +1,4 @@
 package Neat.and.Tidy.Solutions.cleaning.service.app.service;
-
 import Neat.and.Tidy.Solutions.cleaning.service.app.data.dto.request.BookingRequest;
 import Neat.and.Tidy.Solutions.cleaning.service.app.data.models.Booking;
 import Neat.and.Tidy.Solutions.cleaning.service.app.data.models.Customer;
@@ -11,10 +10,7 @@ import Neat.and.Tidy.Solutions.cleaning.service.app.exception.BookingNotFoundExc
 import Neat.and.Tidy.Solutions.cleaning.service.app.exception.UnAuthorizedActionException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
-
 import java.util.List;
-import java.util.Optional;
-
 @Service
 @RequiredArgsConstructor
 public class BookingServiceImpl implements BookingService {
@@ -27,9 +23,8 @@ public class BookingServiceImpl implements BookingService {
                 .orElseThrow(()-> new IllegalArgumentException("Invalid customer ID"));
         Services services = serviceRepository.findServiceByName(bookingRequest.getCleaningServiceName())
                 .orElseThrow(()-> new IllegalArgumentException("Invalid NTS cleaning service ID"));
-
         Booking booking = Booking.builder()
-                .customerBooking(customer)
+                .customer(customer)
                 .cleaningServiceName(services.getName())
                 .bookingDateTime(bookingRequest.getBookingDateTime())
                 .build();
@@ -37,15 +32,15 @@ public class BookingServiceImpl implements BookingService {
         return bookingRepository.save(booking);
     }
     @Override
-    public Optional<Booking> getBookingsByCustomerId(Long customerId) {
-        return bookingRepository.findById(customerId);
+    public List<Booking> getBookingsByCustomerId(Long customerId) {
+        return bookingRepository.findBookingByCustomerId(customerId);
     }
     public List<Booking> getAllBookings(){
         return bookingRepository.findAll();
     }
     public void cancelBooking(Long bookingId, Long customerId){
        Booking foundBooking = bookingRepository.findById(bookingId).orElseThrow(BookingNotFoundException::new);
-       if(foundBooking.getCustomerBooking().getId().equals(customerId)){
+       if(foundBooking.getCustomer().getId().equals(customerId)){
            bookingRepository.delete(foundBooking);
        }
        else throw new UnAuthorizedActionException("You are not authorized to cancel this order / booking");
