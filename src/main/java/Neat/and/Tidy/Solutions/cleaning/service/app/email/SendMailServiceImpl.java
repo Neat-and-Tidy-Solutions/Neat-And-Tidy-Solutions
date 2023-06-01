@@ -1,15 +1,23 @@
 package Neat.and.Tidy.Solutions.cleaning.service.app.email;
 
 import lombok.AllArgsConstructor;
+import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.mail.SimpleMailMessage;
+import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
 @Service
-@AllArgsConstructor
+//@AllArgsConstructor
+@RequiredArgsConstructor
 public class SendMailServiceImpl implements SendMailService {
 
     private final MailService mailService;
+
+    private final JavaMailSender javaMailSender;
+
 
     @Override
     public String sendMail(EmailSendingRequest request) {
@@ -26,4 +34,21 @@ public class SendMailServiceImpl implements SendMailService {
 
         return mailService.sendMail(emailRequest);
     }
+
+    @Override
+    public void send(String to) {
+        SimpleMailMessage mailMessage = new SimpleMailMessage();
+        mailMessage.setTo(to);
+        mailMessage.setFrom("neatandtidyjanitorialservices");
+        mailMessage.setSubject("CONGRATULATIONS OUR DEAR ESTEEMED CUSTOMER");
+        mailMessage.setText("We are pleased to invite you to become an admin of the cleaning service industry.\" +\n" +
+                "                        \" As an admin, you will have the ability to manage users, create and edit cleaning jobs, and track the progress of cleaning jobs.\" +\n" +
+                "                        \" To accept this invitation, please click on the following link: \" +\n" +
+                "                        \"http://localhost:8080/admin/accept-invitation. Thank you for your time and consideration.\" +\n" +
+                "                        \"Sincerely, The NTSJ Cleaning Service Industry Team\"");
+
+        javaMailSender.send(mailMessage);
+    }
+
+
 }

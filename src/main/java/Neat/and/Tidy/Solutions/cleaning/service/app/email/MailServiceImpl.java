@@ -2,7 +2,6 @@ package Neat.and.Tidy.Solutions.cleaning.service.app.email;
 
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.MediaType;
@@ -33,33 +32,19 @@ public class MailServiceImpl implements MailService{
 
     }
 
+    @Override
+    public String sendCustomerMail(EmailSendingRequest request) {
+        RestTemplate restTemplate = new RestTemplate();
+        HttpHeaders headers = new HttpHeaders();
+        headers.setContentType(MediaType.APPLICATION_JSON);
+        headers.set("api-key", "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");
+        HttpEntity<EmailSendingRequest> requestEntity = new HttpEntity<>(request, headers);
 
-//    @Autowired
-//    private final JavaMailSender;
-//
-//    public void sendEmail(String toEmail, String subject, String body) throws MessagingException {
-//        try {
-//            log.info("problem1: ");
-//            MimeMessage mimeMessage = javaMailSender.createMimeMessage();
-//            log.info("problem2: ");
-//            MimeMessageHelper mimeMessageHelper = new MimeMessageHelper(mimeMessage, true);
-//            log.info("problem3: ");
-//            mimeMessageHelper.setFrom("em123nest@gmail.com");
-//            log.info("problem4: ");
-//            mimeMessageHelper.setTo(toEmail);
-//            log.info("problem5: ");
-//            mimeMessageHelper.setText(body);
-//            log.info("problem6: ");
-//            mimeMessageHelper.setSubject(subject);
-//            log.info("problem7: ");
-//            javaMailSender.send(mimeMessage);
-//            log.info("problem8: ");
-//        }catch(MessagingException e) {
-//            log.info("problem9: ");
-//            log.info(e.getMessage());
-//            throw new RuntimeException(e);
-//        }
-//    }
+        ResponseEntity<String> response = restTemplate.postForEntity("https://api.sendinblue.com/v3/smtp/email", requestEntity, String.class);
+        log.info("res->{}", response);
+        return response.getBody();
+    }
+
 
 
 }

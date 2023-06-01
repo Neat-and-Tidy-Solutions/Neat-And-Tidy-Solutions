@@ -19,4 +19,11 @@ public class SendMailController {
         var response = service.sendMail(request);
         return ResponseEntity.ok(response);
     }
+
+
+//    @PostMapping("/sendToCustomer")
+//    public ResponseEntity<String> sendCustomerMail(@RequestBody EmailSendingRequest request) {
+//        var response = service.sendCustomerMail(request);
+//        return ResponseEntity.ok(response);
+//    }
 }
