@@ -1,4 +1,4 @@
-package Neat.and.Tidy.Solutions.cleaning.service.app.service;
+package Neat.and.Tidy.Solutions.cleaning.service.app.service.impl;
 
 import Neat.and.Tidy.Solutions.cleaning.service.app.data.dto.request.LoginRequest;
 import Neat.and.Tidy.Solutions.cleaning.service.app.data.dto.request.UpdateCustomerRequest;
@@ -9,6 +9,7 @@ import Neat.and.Tidy.Solutions.cleaning.service.app.data.models.Customer;
 import Neat.and.Tidy.Solutions.cleaning.service.app.data.repositories.AppUserRepository;
 import Neat.and.Tidy.Solutions.cleaning.service.app.data.repositories.CustomerRepository;
 import Neat.and.Tidy.Solutions.cleaning.service.app.exception.NTSManagementException;
+import Neat.and.Tidy.Solutions.cleaning.service.app.service.CustomerService;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.github.fge.jsonpatch.JsonPatch;
@@ -20,7 +21,7 @@ import java.util.List;
 @Service
 @AllArgsConstructor
 @Slf4j
-public class CustomerServiceImpl implements CustomerService{
+public class CustomerServiceImpl implements CustomerService {
     private final AppUserRepository appUserRepository;
     private final CustomerRepository customerRepository;
 //    @Override
