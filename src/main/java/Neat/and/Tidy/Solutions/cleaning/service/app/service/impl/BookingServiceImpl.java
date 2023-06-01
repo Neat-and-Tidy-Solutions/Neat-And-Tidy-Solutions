@@ -1,4 +1,4 @@
-package Neat.and.Tidy.Solutions.cleaning.service.app.service;
+package Neat.and.Tidy.Solutions.cleaning.service.app.service.impl;
 
 import Neat.and.Tidy.Solutions.cleaning.service.app.data.dto.request.BookingRequest;
 import Neat.and.Tidy.Solutions.cleaning.service.app.data.models.Booking;
@@ -9,6 +9,7 @@ import Neat.and.Tidy.Solutions.cleaning.service.app.data.repositories.CustomerRe
 import Neat.and.Tidy.Solutions.cleaning.service.app.data.repositories.ServiceRepository;
 import Neat.and.Tidy.Solutions.cleaning.service.app.exception.BookingNotFoundException;
 import Neat.and.Tidy.Solutions.cleaning.service.app.exception.UnAuthorizedActionException;
+import Neat.and.Tidy.Solutions.cleaning.service.app.service.BookingService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -29,7 +30,7 @@ public class BookingServiceImpl implements BookingService {
                 .orElseThrow(()-> new IllegalArgumentException("Invalid NTS cleaning service ID"));
 
         Booking booking = Booking.builder()
-                .customerBooking(customer)
+                .customerBooking(customer.getId())
                 .cleaningServiceName(services.getName())
                 .bookingDateTime(bookingRequest.getBookingDateTime())
                 .build();
@@ -45,7 +46,7 @@ public class BookingServiceImpl implements BookingService {
     }
     public void cancelBooking(Long bookingId, Long customerId){
        Booking foundBooking = bookingRepository.findById(bookingId).orElseThrow(BookingNotFoundException::new);
-       if(foundBooking.getCustomerBooking().getId().equals(customerId)){
+       if(foundBooking.getCustomerBooking().equals(customerId)){
            bookingRepository.delete(foundBooking);
        }
        else throw new UnAuthorizedActionException("You are not authorized to cancel this order / booking");

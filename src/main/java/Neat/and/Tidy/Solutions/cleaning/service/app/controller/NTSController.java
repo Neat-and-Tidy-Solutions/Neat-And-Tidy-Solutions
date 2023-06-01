@@ -5,20 +5,26 @@ import Neat.and.Tidy.Solutions.cleaning.service.app.data.dto.response.CreateServ
 import Neat.and.Tidy.Solutions.cleaning.service.app.data.dto.response.FindServiceResponse;
 import Neat.and.Tidy.Solutions.cleaning.service.app.data.models.Services;
 import Neat.and.Tidy.Solutions.cleaning.service.app.service.NTSService;
+import lombok.AllArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 @RestController
-@RequestMapping("/service")
+@RequestMapping("/api/service")
+@Controller
+@AllArgsConstructor
 public class NTSController {
-private final NTSService ntsService;
 
-    public NTSController(NTSService ntsService) {
-        this.ntsService = ntsService;
-    }
+    @Autowired
+    private NTSService ntsService;
+
+
     @PostMapping("/create")
     public ResponseEntity<?> createService(@RequestBody CreateServiceRequest createServiceRequest){
         CreateServiceResponse createServiceResponse = ntsService.createService(createServiceRequest);

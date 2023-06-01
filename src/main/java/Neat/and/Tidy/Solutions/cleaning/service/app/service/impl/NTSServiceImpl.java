@@ -1,4 +1,4 @@
-package Neat.and.Tidy.Solutions.cleaning.service.app.service;
+package Neat.and.Tidy.Solutions.cleaning.service.app.service.impl;
 
 import Neat.and.Tidy.Solutions.cleaning.service.app.data.dto.request.CreateServiceRequest;
 import Neat.and.Tidy.Solutions.cleaning.service.app.data.dto.response.CreateServiceResponse;
@@ -6,14 +6,18 @@ import Neat.and.Tidy.Solutions.cleaning.service.app.data.dto.response.FindServic
 import Neat.and.Tidy.Solutions.cleaning.service.app.data.models.Services;
 import Neat.and.Tidy.Solutions.cleaning.service.app.data.repositories.ServiceRepository;
 import Neat.and.Tidy.Solutions.cleaning.service.app.exception.NTSServiceNotFoundException;
+import Neat.and.Tidy.Solutions.cleaning.service.app.service.NTSService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.context.annotation.Primary;
 import org.springframework.stereotype.Service;
 import java.util.List;
 import java.util.Optional;
 
 @RequiredArgsConstructor
 @Service
+@Primary
 public class NTSServiceImpl implements NTSService {
+
     private final ServiceRepository serviceRepository;
     @Override
     public CreateServiceResponse createService(CreateServiceRequest createServiceRequest) {

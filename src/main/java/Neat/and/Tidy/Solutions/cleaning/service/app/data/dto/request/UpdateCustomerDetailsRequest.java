@@ -1,6 +1,5 @@
 package Neat.and.Tidy.Solutions.cleaning.service.app.data.dto.request;
 
-import Neat.and.Tidy.Solutions.cleaning.service.app.data.models.Gender;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -17,5 +16,4 @@ public class UpdateCustomerDetailsRequest {
     private String contactNumber;
     private String address;
     private String password;
-
 }

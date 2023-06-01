@@ -10,11 +10,15 @@ import Neat.and.Tidy.Solutions.cleaning.service.app.data.repositories.CleanerRep
 import Neat.and.Tidy.Solutions.cleaning.service.app.data.repositories.GuarantorRepository;
 import Neat.and.Tidy.Solutions.cleaning.service.app.exception.NTSManagementException;
 import Neat.and.Tidy.Solutions.cleaning.service.app.service.CleanerService;
+import org.springframework.stereotype.Service;
+
+
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Objects;
+
 
 @Service
 @AllArgsConstructor
@@ -62,6 +66,4 @@ public class CleanerServiceImpl implements CleanerService {
 
 
 }
-
-
 

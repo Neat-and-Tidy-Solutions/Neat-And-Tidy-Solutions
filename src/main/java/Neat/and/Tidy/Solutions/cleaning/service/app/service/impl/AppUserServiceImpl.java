@@ -6,22 +6,22 @@ import Neat.and.Tidy.Solutions.cleaning.service.app.data.models.AppUser;
 import Neat.and.Tidy.Solutions.cleaning.service.app.data.repositories.AppUserRepository;
 import Neat.and.Tidy.Solutions.cleaning.service.app.exception.NTSManagementException;
 import Neat.and.Tidy.Solutions.cleaning.service.app.service.AppUserService;
-import lombok.AllArgsConstructor;
 import org.mindrot.jbcrypt.BCrypt;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.Objects;
 
 @Service
-@AllArgsConstructor
 public class AppUserServiceImpl implements AppUserService {
-    private final AppUserRepository appUserRepository;
+    @Autowired
+    private AppUserRepository appUserRepository;
 
     @Override
     public AppUserResponse register(AppUserRequest appUserRequest) {
         AppUser appUser = new AppUser();
         appUser.setUsername(appUserRequest.getUsername());
-        appUser.setEmail(appUserRequest.getEmail());
+        appUser.setEmailAddress(appUserRequest.getEmail());
         appUser.setContactNumber(appUserRequest.getContactNumber());
         appUser.setPassword(hashPassword(appUserRequest.getPassword()));
         appUserRepository.save(appUser);
@@ -47,5 +47,4 @@ public class AppUserServiceImpl implements AppUserService {
     private String hashPassword(String password) {
         return BCrypt.hashpw(password, BCrypt.gensalt());
     }
-
 }
