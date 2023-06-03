@@ -41,11 +41,13 @@ public class SendMailServiceImpl implements SendMailService {
         mailMessage.setTo(to);
         mailMessage.setFrom("neatandtidyjanitorialservices");
         mailMessage.setSubject("CONGRATULATIONS OUR DEAR ESTEEMED CUSTOMER");
-        mailMessage.setText("We are pleased to invite you to become an admin of the cleaning service industry.\" +\n" +
-                "                        \" As an admin, you will have the ability to manage users, create and edit cleaning jobs, and track the progress of cleaning jobs.\" +\n" +
-                "                        \" To accept this invitation, please click on the following link: \" +\n" +
-                "                        \"http://localhost:8080/admin/accept-invitation. Thank you for your time and consideration.\" +\n" +
-                "                        \"Sincerely, The NTSJ Cleaning Service Industry Team\"");
+        mailMessage.setText("""
+                We are pleased to have you on our platform.
+                Please click on the following link to access your dashboard and be WOWED at the services we render:
+                http://localhost:8080/customer/dashboard.\s
+                Thank you for your time and consideration.
+                Sincerely, The NTSJ Cleaning Service Industry Team
+                """);
 
         javaMailSender.send(mailMessage);
     }
