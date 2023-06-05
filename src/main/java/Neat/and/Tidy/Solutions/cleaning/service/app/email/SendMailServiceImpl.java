@@ -46,7 +46,7 @@ public class SendMailServiceImpl implements SendMailService {
         mailMessage.setSubject("CONGRATULATIONS OUR DEAR ESTEEMED CUSTOMER");
         mailMessage.setText("""
                 We are pleased to have you on our platform.
-                Please click on the following link to access your dashboard and be WOWED at the services we render:
+                Please click on the following link to access your dashboard and be in AWE at the services we render:
                 http://localhost:8080/customer/dashboard.\s
                 Thank you for your time and consideration.
                 Sincerely, The NTSJ Cleaning Service Industry Team

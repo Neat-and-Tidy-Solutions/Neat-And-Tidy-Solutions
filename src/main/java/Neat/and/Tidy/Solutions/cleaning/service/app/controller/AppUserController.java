@@ -32,7 +32,7 @@ public class AppUserController {
     }
 
     @GetMapping("/appusers/{email}")
-    public AppUser getAppUser(@PathVariable String email) throws ResourceNotFoundException {
+    public AppUser getAppUser(@RequestBody String email) throws ResourceNotFoundException {
         AppUser appUser = appUserRepository.findByEmailIgnoreCase(email);
         if (appUser == null) {
             throw new ResourceNotFoundException("AppUser not found with email: " + email);
