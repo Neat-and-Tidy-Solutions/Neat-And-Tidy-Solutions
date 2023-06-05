@@ -30,7 +30,7 @@ public class SendMailServiceImpl implements SendMailService {
                         To accept this invitation, please click on the following link:
                         http://localhost:8080/admin/accept-invitation. \s
                         Thank you for your time and consideration.
-                        Sincerely, The NTSJ Cleaning Service Industry Team.
+                        Sincerely, The NTS Cleaning Service Industry Team.
                         """)
                 .build();
         //emailRequest.getTo().add(new Recipient(request.getRecipientName(), request.getRecipientEmail()));
@@ -49,7 +49,7 @@ public class SendMailServiceImpl implements SendMailService {
                 Please click on the following link to access your dashboard and be in AWE at the services we render:
                 http://localhost:8080/customer/dashboard.\s
                 Thank you for your time and consideration.
-                Sincerely, The NTSJ Cleaning Service Industry Team
+                Sincerely, The NTS Cleaning Service Industry Team
                 """);
 
         javaMailSender.send(mailMessage);
