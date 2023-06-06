@@ -26,6 +26,7 @@ import java.util.List;
 @AllArgsConstructor
 @RequestMapping("/customer")
 public class CustomerController {
+
    private final BookingService bookingService;
    private final CustomerService customerService;
    private final AppUserService appUserService;
@@ -54,4 +55,5 @@ public class CustomerController {
         List<Customer> customers = customerService.getAllCustomers();
         return new ResponseEntity<>(customers, HttpStatus.OK);
     }
+
 }
