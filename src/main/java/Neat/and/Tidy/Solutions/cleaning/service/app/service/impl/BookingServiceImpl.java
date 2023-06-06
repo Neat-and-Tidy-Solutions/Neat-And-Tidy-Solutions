@@ -22,7 +22,7 @@ public class BookingServiceImpl implements BookingService {
     public Booking createBooking(BookingRequest bookingRequest) {
         Customer customer = customerRepository.findById(bookingRequest.getCustomerId())
                 .orElseThrow(()-> new IllegalArgumentException("Invalid customer ID"));
-        Services services = serviceRepository.findServiceByName(bookingRequest.getCleaningServiceName())
+        Services services = serviceRepository.findServicesByName(bookingRequest.getCleaningServiceName())
                 .orElseThrow(()-> new IllegalArgumentException("Invalid NTS cleaning service ID"));
         Booking booking = Booking.builder()
                 .customer(customer)

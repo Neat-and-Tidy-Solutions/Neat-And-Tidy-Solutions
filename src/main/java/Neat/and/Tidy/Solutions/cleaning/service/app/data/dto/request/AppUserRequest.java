@@ -1,9 +1,9 @@
 package Neat.and.Tidy.Solutions.cleaning.service.app.data.dto.request;
 
 import Neat.and.Tidy.Solutions.cleaning.service.app.data.models.Gender;
-import jakarta.persistence.Column;
-import jakarta.persistence.EnumType;
-import jakarta.persistence.Enumerated;
+import Neat.and.Tidy.Solutions.cleaning.service.app.email.EmailRequest;
+import Neat.and.Tidy.Solutions.cleaning.service.app.email.EmailSendingRequest;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 

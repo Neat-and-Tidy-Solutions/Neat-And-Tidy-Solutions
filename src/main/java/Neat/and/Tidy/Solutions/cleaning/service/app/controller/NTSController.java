@@ -28,6 +28,11 @@ private final NTSService ntsService;
         FindServiceResponse findServiceResponse = ntsService.findServiceById(serviceId);
         return new ResponseEntity<>(findServiceResponse, HttpStatus.OK);
     }
+    @GetMapping("/findServiceThroughName/{serviceName}")
+    public ResponseEntity<?> findServiceByName(@PathVariable String serviceName){
+        FindServiceResponse findServiceResponse = ntsService.findServiceByName(serviceName);
+        return new ResponseEntity<>(findServiceResponse, HttpStatus.OK);
+    }
     @GetMapping("/getAllService")
     public ResponseEntity<?> findAllServices(){
         List<Services> allServices = ntsService.findAllServices();

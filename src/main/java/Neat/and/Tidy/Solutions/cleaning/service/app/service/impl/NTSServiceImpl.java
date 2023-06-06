@@ -28,7 +28,7 @@ public class NTSServiceImpl implements NTSService {
                 .build();
     }
     public FindServiceResponse findServiceById(Long serviceId){
-        Optional<Services> foundService = serviceRepository.findById(serviceId);
+        Optional<Services> foundService = serviceRepository.findServicesById(serviceId);
         if(foundService.isEmpty()) throw new NTSServiceNotFoundException("No service has been created");
         return getFindServiceResponse(foundService.get());
         }
@@ -40,7 +40,7 @@ public class NTSServiceImpl implements NTSService {
                 .build();
     }
     public FindServiceResponse findServiceByName(String serviceName){
-        Services foundService = serviceRepository.findServiceByName(serviceName).orElseThrow(NTSServiceNotFoundException::new);
+        Services foundService = serviceRepository.findServicesByName(serviceName).orElseThrow(NTSServiceNotFoundException::new);
         return getFindServiceResponse(foundService);
     }
     public List<Services> findAllServices(){

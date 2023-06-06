@@ -9,6 +9,7 @@ import Neat.and.Tidy.Solutions.cleaning.service.app.data.repositories.AppUserRep
 import Neat.and.Tidy.Solutions.cleaning.service.app.data.repositories.CleanerRepository;
 import Neat.and.Tidy.Solutions.cleaning.service.app.data.repositories.GuarantorRepository;
 import Neat.and.Tidy.Solutions.cleaning.service.app.exception.NTSManagementException;
+import Neat.and.Tidy.Solutions.cleaning.service.app.exception.UserNotFoundException;
 import Neat.and.Tidy.Solutions.cleaning.service.app.service.CleanerService;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -24,10 +25,11 @@ public class CleanerServiceImpl implements CleanerService {
     private final GuarantorRepository guarantorRepository;
     @Override
     public RegisterCleanerResponse updateProfile(UpdateCleanerRequest updateCleanerRequest) {
-        AppUser foundUser = appUserRepository.findByEmailIgnoreCase(updateCleanerRequest.getEmail());
+        AppUser foundUser = appUserRepository.findByEmail(updateCleanerRequest.getEmail())
+                .orElseThrow(()-> new UserNotFoundException("User not found"));;
         Guarantor foundGuarantor = guarantorRepository.findGuarantorByEmailIgnoreCase(updateCleanerRequest.getEmail());
         Cleaner cleaner = new Cleaner();
-        if(Objects.isNull(foundUser)) throw new NTSManagementException("user not found");
+        //if(Objects.isNull(foundUser)) throw new NTSManagementException("user not found");
         if(Objects.isNull(foundGuarantor)) throw new NTSManagementException("guarantor does not exist");
         foundUser.setFullName(updateCleanerRequest.getFullName());
         cleaner.setAppuser(foundUser);
