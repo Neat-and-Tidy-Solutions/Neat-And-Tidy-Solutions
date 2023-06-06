@@ -28,6 +28,7 @@ public class BookingServiceImpl implements BookingService {
                 .customer(customer)
                 .cleaningServiceName(services.getName())
                 .bookingDateTime(bookingRequest.getBookingDateTime())
+                .serviceLocation(bookingRequest.getServiceLocation())
                 .build();
         bookingRepository.save(booking);
         return bookingRepository.save(booking);

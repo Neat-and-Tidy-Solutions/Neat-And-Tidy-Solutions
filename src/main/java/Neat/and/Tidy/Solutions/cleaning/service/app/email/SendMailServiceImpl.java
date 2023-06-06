@@ -12,7 +12,7 @@ import java.util.List;
 public class SendMailServiceImpl implements SendMailService{
     private final MailService mailService;
     private final JavaMailSender javaMailSender;
-//    private final AppUserService appUserService;
+
     @Override
     public String sendMail(EmailSendingRequest request) {
         EmailRequest emailRequest = EmailRequest.builder()

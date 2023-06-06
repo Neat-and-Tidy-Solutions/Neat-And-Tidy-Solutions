@@ -14,4 +14,5 @@ public class BookingRequest {
     private Long customerId;
     private String cleaningServiceName;
     private LocalDateTime bookingDateTime;
+    private String serviceLocation;
 }

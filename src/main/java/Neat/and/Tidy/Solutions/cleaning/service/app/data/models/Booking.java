@@ -21,5 +21,6 @@ public class Booking {
     private Customer customer;
     private String cleaningServiceName;
     private LocalDateTime bookingDateTime;
+    private String serviceLocation;
     private boolean setAccepted;
 }
