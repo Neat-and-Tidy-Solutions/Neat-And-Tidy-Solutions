@@ -1,36 +1,64 @@
-package Neat.and.Tidy.Solutions.cleaning.service.app.service;
+package Neat.and.Tidy.Solutions.cleaning.service.app.service.impl;
 
-import Neat.and.Tidy.Solutions.cleaning.service.app.data.dto.request.*;
-import Neat.and.Tidy.Solutions.cleaning.service.app.data.dto.response.*;
+import Neat.and.Tidy.Solutions.cleaning.service.app.data.dto.request.UpdateCustomerRequest;
+import Neat.and.Tidy.Solutions.cleaning.service.app.data.dto.response.UpdateCustomerResponse;
+import Neat.and.Tidy.Solutions.cleaning.service.app.data.models.AppUser;
 import Neat.and.Tidy.Solutions.cleaning.service.app.data.models.Customer;
+import Neat.and.Tidy.Solutions.cleaning.service.app.data.repositories.AppUserRepository;
 import Neat.and.Tidy.Solutions.cleaning.service.app.data.repositories.CustomerRepository;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import Neat.and.Tidy.Solutions.cleaning.service.app.exception.NTSManagementException;
+import Neat.and.Tidy.Solutions.cleaning.service.app.service.CustomerService;
+import lombok.AllArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.stereotype.Service;
+import java.util.List;
+import java.util.Objects;
 
-import java.util.Optional;
+@Service
+@AllArgsConstructor
+@Slf4j
+public class CustomerServiceImpl implements CustomerService {
+    private final AppUserRepository appUserRepository;
+    private final CustomerRepository customerRepository;
 
-public class CustomerServiceImpl implements CustomerService{
-    private CustomerRepository customerRepository;
-    private BCryptPasswordEncoder bCryptPasswordEncoder;
 
-    public CustomerServiceImpl(CustomerRepository customerRepository, BCryptPasswordEncoder bCryptPasswordEncoder){
-        this.customerRepository = customerRepository;
-        this.bCryptPasswordEncoder = bCryptPasswordEncoder;
-    }
+
+//    @Override
+//    public Customer updateProfile(Long customerId, JsonPatch updatePayload) {
+//        ObjectMapper objectMapper = new ObjectMapper();
+//        Customer foundCustomer = getCustomerById(customerId);
+////        AppUser customerDetails = foundCustomer.getAppUser();
+//        JsonNode node = objectMapper.convertValue(foundCustomer, JsonNode.class);
+//        try{
+//            JsonNode updatedNode = updatePayload.apply(node);
+//            Customer updatedCustomer = objectMapper.convertValue(updatedNode, Customer.class);
+//
+//            updatedCustomer = customerRepository.save(updatedCustomer);
+//            return updatedCustomer;
+//        }catch (JsonPatchException jsonPatchException){
+//            log.error(jsonPatchException.getMessage());
+//            throw new RuntimeException();
+//        }
+//    }
+
     @Override
-    public Customer register(RegisterCustomerRequest registerCustomerRequest) {
-        return null;
+    public Customer getCustomerById(Long customerId) {
+        return customerRepository.findById(customerId).orElseThrow(()->
+                new NTSManagementException("Customer not found"));
     }
 
-
-
-    @Override
-    public boolean validateUser(LoginRequest loginRequest) {
-        Optional<Customer> customer = customerRepository.findByEmail(loginRequest.getEmail());
-        if(customer.isPresent() && bCryptPasswordEncoder.matches(loginRequest.getPassword(), customer.get().getPassword())){
-            return true;
-        }
-        return false;
+    public  List<Customer> getAllCustomers(){
+        return customerRepository.findAll();
     }
+//    @Override
+//    public List<Customer> getCleaners() {
+//        return customerRepository.findAll();
+//    }
+
+//    @Override
+//    public void deleteCustomerById(Long customerId) {
+//customerRepository.deleteById(customerId);
+//    }
 
 
 }

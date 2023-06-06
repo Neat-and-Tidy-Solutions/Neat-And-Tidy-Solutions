@@ -7,6 +7,5 @@ public class Notification {
     private String subject;
     private String body;
     private Customer recipient;
-    private Admin sender;
     private File attachment;
 }
