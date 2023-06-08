@@ -1,16 +1,16 @@
 package Neat.and.Tidy.Solutions.cleaning.service.app.service;
 
-import Neat.and.Tidy.Solutions.cleaning.service.app.data.dto.request.*;
-import Neat.and.Tidy.Solutions.cleaning.service.app.data.dto.response.RegisterCustomerResponse;
+import Neat.and.Tidy.Solutions.cleaning.service.app.data.dto.request.UpdateCustomerRequest;
+import Neat.and.Tidy.Solutions.cleaning.service.app.data.dto.response.UpdateCustomerResponse;
 import Neat.and.Tidy.Solutions.cleaning.service.app.data.models.Customer;
-
 import java.util.List;
-
 public interface CustomerService {
-    RegisterCustomerResponse updateProfile(UpdateCustomerRequest updateCustomerRequest);
+//    UpdateCustomerDetailResponse updateProfile(UpdateCustomerRequest updateCustomerRequest);
+//    Customer updateProfile(Long customerId, JsonPatch updatePayload);
     Customer getCustomerById(Long id);
-    List<Customer> getCleaners();
-    void deleteCustomerById(Long id);
+    List<Customer> getAllCustomers();
+//    List<Customer> getCleaners();
+//    void deleteCustomerById(Long id);
 
 
 }

@@ -15,6 +15,5 @@ public class UpdateCustomerRequest {
     private String email;
     private String contactNumber;
     private String address;
-    private Gender gender;
-    private String password;
+    private String userName;
 }
