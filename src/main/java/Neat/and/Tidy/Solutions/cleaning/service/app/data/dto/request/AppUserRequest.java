@@ -12,10 +12,8 @@ import lombok.Data;
 public class AppUserRequest {
     private String username;
     private String fullName;
-//    @Column(unique = true)
     private String email;
     private String password;
     private String contactNumber;
-//    @Enumerated(value = EnumType.STRING)
     private Gender gender;
 }
