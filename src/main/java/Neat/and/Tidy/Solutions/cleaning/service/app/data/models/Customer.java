@@ -1,7 +1,10 @@
 package Neat.and.Tidy.Solutions.cleaning.service.app.data.models;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.*;
+
+import java.util.List;
 
 @Entity
 @AllArgsConstructor
@@ -13,13 +16,16 @@ public class Customer {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private String firstName;
-    private String secondName;
-//    @OneToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
-//    private AppUser userDetails;
-    private String contactNumber;
+    @Column(unique = true)
     private String email;
-    private String password;
+    @OneToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    private AppUser appUser;
     private String address;
+    @Enumerated(EnumType.STRING)
     private Gender gender;
+    private String contactNumber;
+    private String fullName;
+    @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL, mappedBy = "customer")
+    @JsonIgnore
+    private List<Booking> bookingList;
 }

@@ -12,6 +12,7 @@ import lombok.Setter;
 @Setter
 public class Cleaner {
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     @OneToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL )
     private AppUser appuser;

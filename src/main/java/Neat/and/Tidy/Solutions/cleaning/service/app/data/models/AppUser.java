@@ -1,16 +1,15 @@
 package Neat.and.Tidy.Solutions.cleaning.service.app.data.models;
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
+import java.time.LocalDateTime;
 @Entity
 @AllArgsConstructor
 @NoArgsConstructor
 @Getter
 @Setter
+@Builder
 public class AppUser {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -22,7 +21,11 @@ public class AppUser {
     private String email;
     private String password;
     private String contactNumber;
+    private String address;
     @Enumerated(value = EnumType.STRING)
     private Gender gender;
+    private String token;
+    @Column(columnDefinition = "Timestamp")
+    private LocalDateTime tokenCreationDateTime;
 }
 
