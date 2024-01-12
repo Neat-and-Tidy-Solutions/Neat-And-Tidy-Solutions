@@ -1,35 +1,59 @@
 package Neat.and.Tidy.Solutions.cleaning.service.app.controller;
 
-import Neat.and.Tidy.Solutions.cleaning.service.app.data.dto.request.LoginRequest;
-import Neat.and.Tidy.Solutions.cleaning.service.app.data.dto.request.RegisterCustomerRequest;
-import Neat.and.Tidy.Solutions.cleaning.service.app.data.dto.response.RegisterCustomerResponse;
+//import Neat.and.Tidy.Solutions.cleaning.service.app.data.dto.request.CreateServiceRequest;
+//import Neat.and.Tidy.Solutions.cleaning.service.app.data.dto.request.UpdateCustomerRequest;
+//import Neat.and.Tidy.Solutions.cleaning.service.app.data.dto.response.CreateServiceResponse;
+//import Neat.and.Tidy.Solutions.cleaning.service.app.data.dto.response.FindServiceResponse;
+//import Neat.and.Tidy.Solutions.cleaning.service.app.data.dto.response.RegisterCustomerResponse;
+//import Neat.and.Tidy.Solutions.cleaning.service.app.data.dto.response.UpdateCustomerDetailResponse;
+import Neat.and.Tidy.Solutions.cleaning.service.app.data.dto.request.UpdateCleanerRequest;
+import Neat.and.Tidy.Solutions.cleaning.service.app.data.dto.request.UpdateCustomerRequest;
+import Neat.and.Tidy.Solutions.cleaning.service.app.data.dto.response.AppUserResponse;
+import Neat.and.Tidy.Solutions.cleaning.service.app.data.dto.response.UpdateCustomerResponse;
+import Neat.and.Tidy.Solutions.cleaning.service.app.data.models.Customer;
+import Neat.and.Tidy.Solutions.cleaning.service.app.service.AppUserService;
+import Neat.and.Tidy.Solutions.cleaning.service.app.service.BookingService;
 import Neat.and.Tidy.Solutions.cleaning.service.app.service.CustomerService;
+import com.github.fge.jsonpatch.JsonPatch;
 import lombok.AllArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.stereotype.Controller;
-import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+@CrossOrigin
 @RestController
-@RequestMapping("/customer")
-@Controller
 @AllArgsConstructor
+@RequestMapping("/customer")
 public class CustomerController {
-//    @Autowired
-    private final CustomerService customerService;
-    @PostMapping("/register")
-    public ResponseEntity<?> register(@RequestBody RegisterCustomerRequest registerCustomerRequest){
-        RegisterCustomerResponse registerCustomerResponse = customerService.register(registerCustomerRequest);
-        return new ResponseEntity<>(registerCustomerResponse, HttpStatus.CREATED);
-    }
-//    @PostMapping("/login")
-//    public ResponseEntity<?> login(@RequestBody LoginRequest loginRequest){
-//        customerService.login(loginRequest);
-//        return ResponseEntity.ok("User logged in");
+
+   private final BookingService bookingService;
+   private final CustomerService customerService;
+   private final AppUserService appUserService;
+
+//    @PatchMapping(value = "/{customerId}", consumes = "application/json-patch+json")
+//    public ResponseEntity<?> updateProfile(@PathVariable Long customerId, @RequestBody JsonPatch updatePatch){
+//        try{
+//            var response = customerService.updateProfile(customerId, updatePatch);
+//            return ResponseEntity.status(HttpStatus.OK).body(response);
+//        }catch (Exception exception){
+//            return ResponseEntity.badRequest().body(exception.getMessage());
+//        }
 //    }
+    @PutMapping("/update_customer_profile")
+    public AppUserResponse updateCustomerResponse(@RequestBody UpdateCustomerRequest updateCustomerRequest){
+        return appUserService.updateCustomerProfile(updateCustomerRequest);
+    }
+
+    @GetMapping("/get_customer/{id}")
+    public ResponseEntity<?> getCustomerById(@PathVariable Long id){
+        Customer customerGotten = customerService.getCustomerById(id);
+        return new ResponseEntity<>(customerGotten, HttpStatus.OK);
+    }
+    @GetMapping("/all_customers")
+    public ResponseEntity<?> getAllCustomers(){
+        List<Customer> customers = customerService.getAllCustomers();
+        return new ResponseEntity<>(customers, HttpStatus.OK);
+    }
+
 }
