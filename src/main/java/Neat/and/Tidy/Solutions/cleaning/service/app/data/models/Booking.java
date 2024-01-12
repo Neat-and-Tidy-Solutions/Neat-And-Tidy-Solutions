@@ -7,18 +7,26 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.time.LocalDateTime;
+
+
+@Entity
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-@Entity
 @Builder
 public class Booking {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     @OneToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
-    private Customer customerBooking;
+    private Customer customer;
+
+    private Long customerBooking;
+
+    private Long cleanerId;
+
     private String cleaningServiceName;
     private LocalDateTime bookingDateTime;
     private boolean setAccepted;
+
 }

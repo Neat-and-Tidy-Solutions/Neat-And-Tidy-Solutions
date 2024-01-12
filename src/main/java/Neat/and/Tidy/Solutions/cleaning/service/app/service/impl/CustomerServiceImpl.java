@@ -1,4 +1,4 @@
-package Neat.and.Tidy.Solutions.cleaning.service.app.service;
+package Neat.and.Tidy.Solutions.cleaning.service.app.service.impl;
 
 import Neat.and.Tidy.Solutions.cleaning.service.app.data.dto.request.LoginRequest;
 import Neat.and.Tidy.Solutions.cleaning.service.app.data.dto.request.UpdateCustomerRequest;
@@ -8,17 +8,20 @@ import Neat.and.Tidy.Solutions.cleaning.service.app.data.models.Customer;
 import Neat.and.Tidy.Solutions.cleaning.service.app.data.repositories.AppUserRepository;
 import Neat.and.Tidy.Solutions.cleaning.service.app.data.repositories.CustomerRepository;
 import Neat.and.Tidy.Solutions.cleaning.service.app.exception.NTSManagementException;
+import Neat.and.Tidy.Solutions.cleaning.service.app.service.CustomerService;
 import lombok.AllArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Objects;
 
 @Service
-@AllArgsConstructor
-public class CustomerServiceImpl implements CustomerService{
-    private final AppUserRepository appUserRepository;
-    private final CustomerRepository customerRepository;
+public class CustomerServiceImpl implements CustomerService {
+    @Autowired
+    private AppUserRepository appUserRepository;
+    @Autowired
+    private CustomerRepository customerRepository;
     @Override
     public RegisterCustomerResponse updateProfile(UpdateCustomerRequest updateCustomerRequest) {
         AppUser foundCustomer = appUserRepository.findByEmailIgnoreCase(updateCustomerRequest.getEmail());
