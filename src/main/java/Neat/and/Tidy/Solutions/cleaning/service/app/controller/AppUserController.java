@@ -24,17 +24,9 @@ public class AppUserController {
     @PostMapping("/login")
     public ResponseEntity<?> login(@RequestBody AppUserRequest appUserRequest){
         AppUserResponse appUserResponse = appUserService.login(appUserRequest);
-//        return new ResponseEntity<>(appUserResponse, HttpStatus.ACCEPTED);
         return ResponseEntity.ok("Login successful");
     }
-//    @PostMapping("/forgot-password")
-//    public ResponseEntity<?> forgotPassword(@RequestBody String email){
-//        String response = appUserService.forgotPassword(email);
-////        if(!response.startsWith("Invalid")){
-////            response = "Invalid email";
-////        }
-//        return new ResponseEntity<>(response, HttpStatus.OK);
-//    }
+    
     @PostMapping("/forget_password")
     public ResponseEntity<?> forgetPassword(@RequestBody ForgetPasswordRequest forgetPasswordRequest) {
         String response = appUserService.forgotPassword(forgetPasswordRequest);
