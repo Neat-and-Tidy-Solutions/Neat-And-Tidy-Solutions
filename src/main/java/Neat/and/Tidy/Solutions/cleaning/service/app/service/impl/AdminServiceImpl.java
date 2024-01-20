@@ -10,7 +10,6 @@ import jakarta.mail.MessagingException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.PathVariable;
-
 import java.util.List;
 import java.util.Optional;
 
@@ -68,36 +67,6 @@ public class AdminServiceImpl implements AdminService {
         }
         return true;
     }
-
-
-//    @Override
-//    public boolean approveCleaner(Long cleanerId) {
-//        Optional<Cleaner> optionalCleaner = cleanerRepository.findById(cleanerId);
-//        if (optionalCleaner.isEmpty()) {
-//            // Cleaner not found
-//            return false;
-//        }
-//        Cleaner cleaner = optionalCleaner.get();
-//        Guarantor guarantor = cleaner.getGuarantor();
-//
-//        if (guarantor == null || !isGuarantorAttributesComplete(guarantor)) {
-//            // Guarantor is missing necessary attributes
-//            return false;
-//        }
-//        cleaner.setApproved(true);
-//        cleanerRepository.save(cleaner);
-//
-//
-////        Optional<Cleaner> optionalCleaner = cleanerRepository.findById(cleanerId);
-////        if(optionalCleaner.isPresent()) {
-////            Cleaner cleaner = optionalCleaner.get();
-////            cleaner.setApproved(true);
-////            cleanerRepository.save(cleaner);
-////        } else {
-////            throw new IllegalArgumentException("Cleaner not found with ID" + cleanerId);
-////        }
-//        return false;
-//    }
 
     private boolean isGuarantorAttributesComplete(Guarantor guarantor) {
         // Check if all necessary guarantor attributes are present
